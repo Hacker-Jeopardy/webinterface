@@ -1,0 +1,8 @@
+# node
+node_modules/
+
+# bower
+bower_components/
+
+# compiled app
+public/
