@@ -15,16 +15,21 @@
   "homepage": "https://git.brn.li/jeopardy/Webinterface",
   "private": "true",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --content-base public/",
+    "start": "webpack-dev-server --progress --colors",
     "compile": "webpack",
     "install": "npm install -g bower webpack webpack-dev-server; bower install"
   },
   "dependencies": {
-    "less": "^2.5.3",
     "css-loader": "^0.19.0",
     "file-loader": "^0.8.4",
+    "font-awesome": "^4.4.0",
+    "hogan.js": "^3.0.2",
+    "howler": "^1.1.27",
+    "less": "^2.5.3",
     "less-loader": "^2.2.1",
+    "loader-utils": "^0.2.11",
+    "mustache-loader": "^0.3.0",
     "style-loader": "^0.12.4",
-    "hogan.js": "^3.0.2"
+    "webpack": "^1.12.2"
   }
 }

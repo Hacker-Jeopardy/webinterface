@@ -20,4 +20,4 @@ npm run install
 npm run compile
 ```
 
-Publish or serve files in ```public/```
+Publish or serve files in ```build/```
