@@ -16,10 +16,10 @@
   "private": "true",
   "scripts": {
     "start": "webpack-dev-server --progress --colors",
-    "compile": "webpack",
-    "install": "npm install -g bower webpack webpack-dev-server; bower install"
+    "compile": "rm -f build/*; webpack",
+    "install": "npm install -g webpack webpack-dev-server"
   },
-  "dependencies": {
+  "devDependencies": {
     "css-loader": "^0.19.0",
     "file-loader": "^0.8.4",
     "font-awesome": "^4.4.0",
@@ -29,6 +29,7 @@
     "less-loader": "^2.2.1",
     "loader-utils": "^0.2.11",
     "mustache-loader": "^0.3.0",
+    "purecss": "^0.6.0",
     "style-loader": "^0.12.4",
     "webpack": "^1.12.2"
   }
