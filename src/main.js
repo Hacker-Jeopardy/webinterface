@@ -4,8 +4,8 @@ require('../node_modules/purecss/build/grids.css');
 require('../node_modules/purecss/build/forms.css');
 require('../node_modules/purecss/build/buttons.css');
 require("../node_modules/font-awesome/less/font-awesome.less");
-require("./css/fonts.css");
-require("./css/jeopardy.css");
+require("../assets/css/fonts.css");
+require("../assets/css/jeopardy.css");
 
 // js
-require("./js/app");
+require("./js/index.jsx");
