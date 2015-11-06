@@ -2,9 +2,13 @@ import React from 'react';
 import SelectServer from './SelectServer';
 
 export default class App extends React.Component {
+    connect(event) {
+        console.log(event);
+    }
+
     render() {
         return (
-            <SelectServer host={""} port={""} />
+            <SelectServer host={""} port={"1234"} onSubmit={this.connect} />
         );
     }
 }

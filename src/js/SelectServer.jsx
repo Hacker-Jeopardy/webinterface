@@ -3,20 +3,19 @@ import React from 'react';
 export default class SelectServer extends React.Component {
     constructor (props) {
         super(props);
-        this.state = { host: '', port: '' };
-        console.log(this);
-        console.log(props);
+        this.state = props;
     }
 
-    componentDidMount() {
-        console.log('SelectServer mounted.');
+    connect(event) {
+        console.log(event);
+        console.log(this);
     }
 
     render() {
-        var { host, port } = this.props;
+        var { host, port } = this.state;
         return (
             <div className="box-center">
-                <form id="select_server" className="pure-form">
+                <form id="select_server" className="pure-form" onSubmit={this.connect}>
                     <fieldset>
                         <legend>Select Jeopardy Server</legend>
 
