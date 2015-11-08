@@ -6,7 +6,11 @@ var srcPath = path.join(__dirname, 'src');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: path.join(srcPath, 'main.js'),
+    entry: [
+        'webpack-dev-server/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
+        path.join(srcPath, 'main.js')
+    ],
     resolve: {
         root: srcPath,
         extensions: ['', '.js', '.jsx'],
@@ -15,13 +19,13 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'build'),
         publicPath: '',
-        filename: '[name].js',
+        filename: 'app.js',
         pathInfo: true
     },
 
     module: {
         loaders: [
-            { test: /\.jsx$/, loaders: ['react-hot', 'babel'], include: srcPath },
+            { test: /\.jsx$/, loader: 'react-hot!babel', include: srcPath },
             { test: /\.css$/, loader: 'style!css' },
             { test: /\.less$/, loader: 'style!css!less' },
             { test: /\.wav$/, loader: 'file-loader' },
@@ -33,13 +37,15 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         /*new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.DedupePlugin()*/
+        new webpack.optimize.DedupePlugin(),*/
         new webpack.NoErrorsPlugin()
     ],
 
     debug: true,
-    //devtool: 'eval-cheap-module-source-map',
+    context: srcPath,
+    devtool: 'source-map',
     devServer: {
-        contentBase: './build'
+        contentBase: './build',
+        hot: true
     }
 };
