@@ -8,14 +8,20 @@ export default React.createClass({
         };
     },
 
-    onSubmit: function() {
-        this.props.onConnect(this.state);
+    connect: function(event) {
+        let data = {
+            host: this.state.host,
+            port: this.state.port,
+            type: event.target.value
+        };
+
+        this.props.onConnect(data);
     },
 
     render: function() {
         return (
             <div className="box-center">
-                <form id="select_server" className="pure-form" onSubmit={this.onSubmit}>
+                <form id="select_server" className="pure-form">
                     <fieldset>
                         <legend>Select Jeopardy Server</legend>
 
@@ -26,11 +32,11 @@ export default React.createClass({
                         <input id="server_port" name="port" type="number" placeholder="4242" value={this.state.port} onChange={this.changePort} ref="port" min="0" max="65535" />
                     </fieldset>
 
-                    <button type="submit" value="scoreboard" onClick={this.changeType} className="pure-button button-xlarge">
+                    <button type="submit" value="scoreboard" onClick={this.connect} className="pure-button button-xlarge">
                         <i className="fa fa-table"></i> Scoreboard
                     </button>
 
-                    <button type="submit" value="admin" onClick={this.changeType} className="pure-button button-xlarge">
+                    <button type="submit" value="admin" onClick={this.connect} className="pure-button button-xlarge">
                         <i className="fa fa-user-secret"></i> Admin
                     </button>
                 </form>
@@ -42,9 +48,6 @@ export default React.createClass({
         this.setState({host: event.target.value});
     },
     changePort: function(event) {
-        this.setState({port: event.target.value});
-    },
-    changeType: function(event) {
-        this.setState({type: event.target.value});
+        this.setState({port: parseInt(event.target.value)});
     }
 });

@@ -1,8 +1,9 @@
-import React from 'react/addons';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import SelectServer from '../src/components/SelectServer.jsx';
 import {expect} from 'chai';
 
-const {renderIntoDocument, scryRenderedDOMComponentsWithTag, Simulate} = React.addons.TestUtils;
+const {renderIntoDocument, scryRenderedDOMComponentsWithTag, Simulate} = TestUtils;
 
 describe('SelectServer', () => {
     it('renders host and port input', () => {
@@ -31,8 +32,8 @@ describe('SelectServer', () => {
     });
 
     it('invokes callback when submitted', () => {
-        let type = null;
-        const onConnect = (data) => type = data.type;
+        let formData = null;
+        const onConnect = (data) => formData = data;
 
         const component = renderIntoDocument(
             <SelectServer onConnect={onConnect} />
@@ -40,11 +41,34 @@ describe('SelectServer', () => {
 
         const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
 
-        Simulate.click(buttons[0]);
-        expect(type).to.equal('scoreboard');
+        ['scoreboard', 'admin'].forEach((value, i) => {
+            formData = null;
+            Simulate.click(buttons[i]);
+            expect(formData.type).to.equal(value);
+        });
+    });
 
-        Simulate.click(buttons[1]);
-        expect(type).to.equal('admin');
+    it('invokes callback with data when submitted', () => {
+        let formData = null;
+        const host = '127.0.0.1', port = 1234;
+        const onConnect = (data) => formData = data;
+
+        const component = renderIntoDocument(
+            <SelectServer host={host} port={port} onConnect={onConnect} />
+        );
+
+        const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
+
+        ['scoreboard', 'admin'].forEach((value, i) => {
+            formData = null;
+            Simulate.click(buttons[i]);
+
+            expect(formData).to.deep.equal({
+                host: host,
+                port: port,
+                type: value
+            });
+        });
     });
 
 });
