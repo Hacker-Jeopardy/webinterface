@@ -1,6 +1,6 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import SelectServer from '../src/components/SelectServer.jsx';
+import {SelectServer} from '../src/components/SelectServer.jsx';
 import {expect} from 'chai';
 
 const {renderIntoDocument, scryRenderedDOMComponentsWithTag, Simulate} = TestUtils;

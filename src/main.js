@@ -8,4 +8,4 @@ require("../assets/css/fonts.css");
 require("../assets/css/jeopardy.css");
 
 // js
-require("./js/index.jsx");
+require("./index.jsx");

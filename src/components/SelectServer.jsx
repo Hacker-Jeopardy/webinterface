@@ -1,6 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as actionCreators from '../action_creators';
 
-export default React.createClass({
+export const SelectServer = React.createClass({
     getInitialState: function() {
         return {
             host: this.props.host,
@@ -15,7 +17,7 @@ export default React.createClass({
             type: event.target.value
         };
 
-        this.props.onConnect(data);
+        this.props.connect(data);
     },
 
     render: function() {
@@ -51,3 +53,15 @@ export default React.createClass({
         this.setState({port: parseInt(event.target.value)});
     }
 });
+
+function mapStateToProps(state) {
+    return {
+        host: state.getIn(['server', 'host']),
+        port: state.getIn(['server', 'port'])
+    };
+}
+
+export const SelectServerContainer = connect(
+    mapStateToProps,
+    actionCreators
+)(SelectServer);
