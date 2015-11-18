@@ -1,23 +1,23 @@
-import {Map} from 'immutable';
+import {Map, fromJS} from 'immutable';
 
-function setState(state, newState) {
-    return state.merge(newState);
-}
-
-function connect(state, entry) {
+function connect(state, server) {
     // TODO?!
     return state.set('server', {
-        host: entry.host,
-        port: entry.port
+        host: server.host,
+        port: server.port
     });
 }
 
 export default function(state = Map(), action) {
     switch (action.type) {
         case 'SET_STATE':
-            return setState(state, action.state);
+            return state.merge(
+                fromJS(action.state)
+            );
+
         case 'CONNECT':
-            return connect(state, action.entry);
+            return connect(state, action.server);
     }
+
     return state;
 }

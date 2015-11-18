@@ -1,8 +1,9 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import {SelectServer} from '../src/components/SelectServer.jsx';
+import {SelectServerStandalone} from '../src/components/SelectServer.jsx';
 import {expect} from 'chai';
 
+const SelectServer = SelectServerStandalone;
 const {renderIntoDocument, scryRenderedDOMComponentsWithTag, Simulate} = TestUtils;
 
 describe('SelectServer', () => {
@@ -36,7 +37,7 @@ describe('SelectServer', () => {
         const onConnect = (data) => formData = data;
 
         const component = renderIntoDocument(
-            <SelectServer onConnect={onConnect} />
+            <SelectServer connect={onConnect} />
         );
 
         const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
@@ -54,7 +55,7 @@ describe('SelectServer', () => {
         const onConnect = (data) => formData = data;
 
         const component = renderIntoDocument(
-            <SelectServer host={host} port={port} onConnect={onConnect} />
+            <SelectServer host={host} port={port} connect={onConnect} />
         );
 
         const buttons = scryRenderedDOMComponentsWithTag(component, 'button');

@@ -1,13 +1,13 @@
 export function setState(state) {
     return {
         type: 'SET_STATE',
-        state
+        state: state
     };
 }
 
-export function connect(entry) {
+export function connect(server) {
     return {
         type: 'CONNECT',
-        entry
+        server: server
     };
 }
