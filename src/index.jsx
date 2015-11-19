@@ -18,7 +18,7 @@ store.dispatch(
             port: 4211
         },
         game: {
-            state: 'new',
+            state: 'scoreboard',
             scoreboard: {
                 name: 'Sample round',
                 points: [100, 200, 300, 400, 500],
@@ -26,25 +26,34 @@ store.dispatch(
                     {
                         name: 'Test Group 1',
                         winner: [
-                            0,
-                            1,
+                            'uuid_0',
+                            'uuid_1',
                             false,
                             null,
+                            null
+                        ]
+                    },
+                    {
+                        name: 'Test Group 2',
+                        winner: [
+                            null,
+                            false,
+                            'uuid_0',
+                            'uuid_1',
                             null
                         ]
                     }
                 ]
             },
-            players: [
-                {
-                    id: 'uuid',
+            players: {
+                uuid_0: {
                     name: 'Sample Player',
                     score: 42,
                     active: true,
                     buzzed: null,
                     connected: true
                 }
-            ],
+            },
             answer: {
                 type: 'text',
                 data: 'Sample answer text.',

@@ -25,7 +25,7 @@ header {
     font-weight: bold;
 }
 
-#content {
+#app {
     position: absolute;
     top: 4em;
     left: 0;
@@ -36,4 +36,79 @@ header {
 .box-center {
     max-width: 768px;
     margin: 0 auto;
+}
+
+table {
+    color: white;
+    font-size: 24px;
+    text-shadow: 1px 1px 0 grey;
+}
+table th {
+    font-size: 32px;
+    padding: 21px 25px 22px 25px;
+    background: #2c539e;
+}
+table tr:first-child th:first-child {
+    border-top-left-radius: 15px;
+}
+table tr:first-child th:last-child {
+    border-top-right-radius: 15px;
+}
+table tr {
+    text-align: center;
+    padding-left: 20px;
+}
+table td {
+    padding: 7px;
+    background: #6682b5;
+}
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+}
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
+}
+table.scoreboard td:hover {
+    background: #3254a5;
+}
+
+div.internet-explorer-placeholder {
+    font-size: 4em;
+}
+div.internet-explorer-placeholder i.fa {
+    float: left;
+    margin-right: 0.15em;
+}
+
+table.scoreboard {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.nobody {
+    background: lightgrey;
+}
+.player1 {
+    background: mediumseagreen;
+}
+.player2 {
+    background: goldenrod;
+}
+.player3 {
+    background: purple;
+}
+.player4 {
+    background: darkslategrey;
+}
+.player5 {
+    background: lightcoral;
+}
+.player6 {
+    background: limegreen;
+}
+.player7 {
+    background: dodgerblue;
+}
+.player8 {
+    background: orangered;
 }
