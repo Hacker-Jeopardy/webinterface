@@ -7,8 +7,8 @@ import reducer from './reducer';
 import {setState} from './action_creators';
 import App from 'components/App';
 import {SelectServer} from 'components/SelectServer';
-import Admin from 'components/Admin';
-import {Scoreboard} from 'components/Scoreboard';
+import {AdminBoard} from 'components/AdminBoard';
+import {PlayerBoard} from 'components/PlayerBoard';
 
 const store = createStore(reducer);
 store.dispatch(
@@ -52,6 +52,13 @@ store.dispatch(
                     active: true,
                     buzzed: null,
                     connected: true
+                },
+                uuid_1: {
+                    name: 'Someone else',
+                    score: 1337,
+                    active: false,
+                    buzzed: null,
+                    connected: false
                 }
             },
             answer: {
@@ -66,8 +73,8 @@ store.dispatch(
 
 const routes = <Route component={App}>
     <Route path='/' component={SelectServer} />
-    <Route path='/admin' component={Admin} />
-    <Route path='/scoreboard' component={Scoreboard} />
+    <Route path='/admin' component={AdminBoard} />
+    <Route path='/player' component={PlayerBoard} />
 </Route>;
 
 ReactDOM.render(

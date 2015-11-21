@@ -80,35 +80,44 @@ div.internet-explorer-placeholder i.fa {
     margin-right: 0.15em;
 }
 
-table.scoreboard {
+table.scoreboard, table.player-list {
     width: 100%;
     table-layout: fixed;
+}
+
+table .player-list .player-active {
+    margin-right: 10px;
+    color: darkgreen;
+}
+table .player-list .player-connected {
+    margin-left: 10px;
+    color: darkred;
 }
 
 .nobody {
     background: lightgrey;
 }
-.player1 {
+.player0 {
     background: mediumseagreen;
 }
-.player2 {
+.player1 {
     background: goldenrod;
 }
-.player3 {
+.player2 {
     background: purple;
 }
-.player4 {
+.player3 {
     background: darkslategrey;
 }
-.player5 {
+.player4 {
     background: lightcoral;
 }
-.player6 {
+.player5 {
     background: limegreen;
 }
-.player7 {
+.player6 {
     background: dodgerblue;
 }
-.player8 {
+.player7 {
     background: orangered;
 }

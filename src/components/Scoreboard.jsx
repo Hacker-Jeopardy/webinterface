@@ -1,67 +1,63 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import InternetExplorerPlaceholder from 'components/InternetExplorerPlaceholder';
-import CategoriesTable from 'components/CategoriesTable';
 
-export const ScoreboardStandalone = React.createClass({
+export default React.createClass({
     mixins: [PureRenderMixin],
     propTypes: {
-        state: React.PropTypes.string,
-        scoreboard: React.PropTypes.object,
-        players: React.PropTypes.object,
-        answer: React.PropTypes.object
+        points: React.PropTypes.string,
+        categories: React.PropTypes.object,
+        players: React.PropTypes.object
     },
 
     render: function() {
-        const {state, scoreboard, players, answer} = this.props;
-        console.log(this.props.state);
-        console.log(this.props.scoreboard);
-        console.log(this.props.players);
-        console.log(this.props.answer);
+        const {points, categories, players} = this.props;
+        const getWinner = (points, i, cat) => {
+            let winner = cat.getIn(['winner', i]);
 
-        switch(state) {
-            case 'new':
-                return (
-                    <InternetExplorerPlaceholder />
-                );
-                break;
+            // TODO
+            if (winner == false) {
+                return points;
+            } else if (winner == null) {
+                return 'nobody';
+            } else {
+                return players.getIn([winner, 'name'])  || 'unkown';
+            }
+        };
+        const getWinnerClass = (points, i, cat) => {
+            let winner = cat.getIn(['winner', i]);
 
-            case 'setup':
-            case 'scoreboard':
-                // table
-                return (
-                    <CategoriesTable
-                        points={scoreboard.get('points')}
-                        categories={scoreboard.get('categories')}
-                        players={players} />
-                );
-                break;
+            // TODO
+            if (winner == false) {
+                return '';
+            } else if (winner == null) {
+                return 'nobody';
+            } else {
+                //return players.getIn([winner, 'name'])  || 'unkown';
+                return 'player1';
+            }
+        };
 
-            case 'answer':
-                // answer
-                break;
-
-            case 'double_jeopardy':
-                // double_jeopardy
-                break;
-
-            case 'results':
-                // results
-                break;
-        }
-
-        return <p>// TODO</p>;
+        return (<table className="scoreboard">
+            <thead>
+                <tr>
+                {categories.map(cat =>
+                    <th>
+                        {cat.get('name')}
+                    </th>
+                )}
+                </tr>
+            </thead>
+            <tbody>
+            {points.map((points, i) =>
+                <tr>
+                    {categories.map(cat =>
+                        <td className={getWinnerClass(points, i, cat)}>
+                            {getWinner(points, i, cat)}
+                        </td>
+                    )}
+                </tr>
+            )}
+            </tbody>
+        </table>);
     }
 });
-
-
-export const Scoreboard = connect((state) => {
-    return {
-        state: state.getIn(['game', 'state']),
-        scoreboard: state.getIn(['game', 'scoreboard']),
-        players: state.getIn(['game', 'players']),
-        answer: state.getIn(['game', 'answer'])
-    };
-}, actionCreators)(ScoreboardStandalone);
