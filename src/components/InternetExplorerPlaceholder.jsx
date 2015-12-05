@@ -6,14 +6,16 @@ export default React.createClass({
     propTypes: {},
 
     render: function() {
-        return (<div className="internet-explorer-placeholder">
-            <i className="fa fa-5x fa-internet-explorer"></i>
-            <p>
-                Jeopardy was optimized for Internet Explorer version 6.
-            </p>
-            <p>
-                Your browser version is not supported.
-            </p>
-        </div>);
+        return (
+            <div className="internet-explorer-placeholder">
+                <i className="fa fa-5x fa-internet-explorer"></i>
+                <p>
+                    Jeopardy was optimized for Internet Explorer version 6.
+                </p>
+                <p>
+                    Your browser version is not supported.
+                </p>
+            </div>
+        );
     }
 });

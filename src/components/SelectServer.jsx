@@ -35,10 +35,14 @@ export const SelectServerStandalone = React.createClass({
                     <form id="select_server" className="pure-form">
                         <fieldset>
                             <legend>Select Jeopardy Server</legend>
+                        </fieldset>
 
+                        <fieldset>
                             <label htmlFor="server_host">Host</label>
                             <input id="server_host" name="host" placeholder="127.0.0.1" value={this.state.host} onChange={this.changeHost} ref="host" />
+                        </fieldset>
 
+                        <fieldset>
                             <label htmlFor="server_port">Port</label>
                             <input id="server_port" name="port" type="number" placeholder="4242" value={this.state.port} onChange={this.changePort} ref="port" min="0" max="65535" />
                         </fieldset>

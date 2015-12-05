@@ -70,6 +70,21 @@ store.dispatch(
         }
     })
 );
+store.dispatch(
+    setState({
+        server: {
+            host: '127.0.0.1',
+            port: 4211
+        },
+        game: {
+            state: 'new',
+            rounds: {
+                round1: 'First Round',
+                round2: 'Second Round'
+            }
+        }
+    })
+);
 
 const routes = <Route component={App}>
     <Route path='/' component={SelectServer} />

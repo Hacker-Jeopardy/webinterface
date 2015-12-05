@@ -21,7 +21,9 @@ export const PlayerBoardStandalone = React.createClass({
         switch(state) {
             case 'new':
                 return (
-                    <InternetExplorerPlaceholder />
+                    <div id="app">
+                        <InternetExplorerPlaceholder />
+                    </div>
                 );
 
             case 'setup':
@@ -29,7 +31,10 @@ export const PlayerBoardStandalone = React.createClass({
                 // table
                 return (
                     <div id="app">
-                        <header>Jeopardy!</header>
+                        <header>
+                            Jeopardy!
+                            <h1>{scoreboard.get('name')}</h1>
+                        </header>
                         <Scoreboard
                             points={scoreboard.get('points')}
                             categories={scoreboard.get('categories')}

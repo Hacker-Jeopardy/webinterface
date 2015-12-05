@@ -19,6 +19,16 @@ header {
     font-family: "gyparody", "Helvetica Neue", "Helvetica", sans-serif;
     font-weight: bold;
 }
+header h1 {
+    margin: 0;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+
+    font-size: .75em;
+    font-family: "Helvetica Neue", "Helvetica", sans-serif;
+    font-weight: bold;
+}
 
 #app {
     position: absolute;
