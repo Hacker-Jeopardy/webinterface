@@ -10,15 +10,10 @@ body {
 }
 
 header {
-    position: absolute;
-    text-align: center;
-    top: 0;
-    left: 0;
-    right: 0;
-
     color: white;
+    text-align: center;
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
-    padding: 0.25em;
+    padding-bottom: 0.25em;
 
     font-size: 3.5em;
     font-family: "gyparody", "Helvetica Neue", "Helvetica", sans-serif;
@@ -27,10 +22,10 @@ header {
 
 #app {
     position: absolute;
-    top: 4em;
-    left: 0;
-    right: 0;
-    padding: 25px;
+    top: 0.75em;
+    left: 0.75em;
+    right: 0.75em;
+    bottom: 0.75em;
 }
 
 .box-center {
@@ -68,6 +63,22 @@ table tr:last-child td:first-child {
 table tr:last-child td:last-child {
     border-bottom-right-radius: 5px;
 }
+table th, table td {
+    border: rgba(255,255,255,0.5) 2px solid;
+}
+table th:first-child, table td:first-child {
+    border-left: none;
+}
+table th:first-child {
+    border-top: none;
+}
+table th:last-child, table td:last-child {
+    border-right: none;
+}
+table th:last-child {
+    border-bottom: none;
+}
+
 table.scoreboard td:hover {
     background: #3254a5;
 }
@@ -85,11 +96,36 @@ table.scoreboard, table.player-list {
     table-layout: fixed;
 }
 
-table .player-list .player-active {
+table.player-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+table.player-list tr:first-child td:first-child {
+    border-top-left-radius: 5px;
+}
+table.player-list tr:first-child td:last-child {
+    border-top-right-radius: 5px;
+}
+table.player-list td {
+    border-bottom: none;
+}
+table.player-list .player-active {
     margin-right: 10px;
     color: darkgreen;
 }
-table .player-list .player-connected {
+table.player-list .player-score:before {
+    content: '[';
+}
+table.player-list .player-score {
+    margin-left: 10px;
+    font-weight: bold;
+}
+table.player-list .player-score:after {
+    content: ']';
+}
+table.player-list .player-connected {
     margin-left: 10px;
     color: darkred;
 }

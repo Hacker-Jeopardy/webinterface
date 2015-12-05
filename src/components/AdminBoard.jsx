@@ -28,7 +28,8 @@ export const AdminBoardStandalone = React.createClass({
             case 'scoreboard':
                 // table
                 return (
-                    <div>
+                    <div id="app">
+                        <header>Jeopardy!</header>
                         <Scoreboard
                             points={scoreboard.get('points')}
                             categories={scoreboard.get('categories')}
