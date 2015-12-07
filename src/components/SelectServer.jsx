@@ -1,8 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {History} from 'react-router';
 import * as actionCreators from '../action_creators';
 
 export const SelectServerStandalone = React.createClass({
+    mixins: [History],
     propTypes: {
         host: React.PropTypes.string,
         port: React.PropTypes.number,
@@ -17,14 +19,13 @@ export const SelectServerStandalone = React.createClass({
     },
 
     connect: function(event) {
-        let data = {
+        let server = {
             host: this.state.host,
-            port: this.state.port,
-            type: event.target.value
+            port: this.state.port
         };
 
-        if (this.props.connect)
-            this.props.connect(data);
+        this.props.onConnect(server);
+        this.history.pushState(null, '/' + event.target.value);
     },
 
     render: function() {
@@ -47,7 +48,7 @@ export const SelectServerStandalone = React.createClass({
                             <input id="server_port" name="port" type="number" placeholder="4242" value={this.state.port} onChange={this.changePort} ref="port" min="0" max="65535" />
                         </fieldset>
 
-                        <button type="submit" value="scoreboard" onClick={this.connect} className="pure-button button-xlarge">
+                        <button type="submit" value="player" onClick={this.connect} className="pure-button button-xlarge">
                             <i className="fa fa-table"></i> Scoreboard
                         </button>
 

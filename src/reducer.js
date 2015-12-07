@@ -1,13 +1,5 @@
 import {Map, fromJS} from 'immutable';
 
-function connect(state, server) {
-    // TODO?!
-    return state.set('server', {
-        host: server.host,
-        port: server.port
-    });
-}
-
 export default function(state = Map(), action) {
     switch (action.type) {
         case 'SET_STATE':
@@ -16,7 +8,12 @@ export default function(state = Map(), action) {
             );
 
         case 'CONNECT':
-            return connect(state, action.server);
+        case 'RECONNECT':
+        case 'CONNECTED':
+        case 'DISCONNECTED':
+            return state.mergeDeep(fromJS({
+                server: action.server
+            }));
     }
 
     return state;

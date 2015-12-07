@@ -52,12 +52,13 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "history": "^1.13.1",
     "immutable": "^3.7.5",
     "react": "^0.14.2",
     "react-addons-pure-render-mixin": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",
-    "react-router": "^1.0.0",
+    "react-router": "^1.0.1",
     "redux": "^3.0.4"
   }
 }

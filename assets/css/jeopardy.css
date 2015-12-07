@@ -93,10 +93,10 @@ table.scoreboard td:hover {
     background: #3254a5;
 }
 
-div.internet-explorer-placeholder {
+div.placeholder {
     font-size: 4em;
 }
-div.internet-explorer-placeholder i.fa {
+div.placeholder i.fa {
     float: left;
     margin-right: 0.15em;
 }

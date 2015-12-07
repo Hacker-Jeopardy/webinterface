@@ -7,7 +7,7 @@ export default React.createClass({
 
     render: function() {
         return (
-            <div className="internet-explorer-placeholder">
+            <div className="placeholder">
                 <i className="fa fa-5x fa-internet-explorer"></i>
                 <p>
                     Jeopardy was optimized for Internet Explorer version 6.

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Connecting from 'components/Connecting';
 import InternetExplorerPlaceholder from 'components/InternetExplorerPlaceholder';
 import Scoreboard from 'components/Scoreboard';
 import PlayerList from 'components/PlayerList';
@@ -16,7 +17,16 @@ export const PlayerBoardStandalone = React.createClass({
     },
 
     render: function() {
-        const {state, scoreboard, players, answer} = this.props;
+        const {state, server_state, scoreboard, players, answer} = this.props;
+
+        // TODO state connecting
+        if(server_state != 'connected')
+            return (
+                <div id="app">
+                    <header>Jeopardy!</header>
+                    <Connecting />
+                </div>
+            );
 
         switch(state) {
             case 'new':
@@ -31,10 +41,7 @@ export const PlayerBoardStandalone = React.createClass({
                 // table
                 return (
                     <div id="app">
-                        <header>
-                            Jeopardy!
-                            <h1>{scoreboard.get('name')}</h1>
-                        </header>
+                        <header>Jeopardy!</header>
                         <Scoreboard
                             points={scoreboard.get('points')}
                             categories={scoreboard.get('categories')}
@@ -45,7 +52,15 @@ export const PlayerBoardStandalone = React.createClass({
                 );
 
             case 'answer':
-                // answer
+                return (
+                    <div id="app">
+                        <header>Jeopardy!</header>
+                        <Answer
+                            answer={scoreboard.get('answer')} />
+                        <PlayerList
+                            players={players} />
+                    </div>
+                );
                 break;
 
             case 'double_jeopardy':
@@ -65,6 +80,7 @@ export const PlayerBoardStandalone = React.createClass({
 export const PlayerBoard = connect((state) => {
     return {
         state: state.getIn(['game', 'state']),
+        server_state: state.getIn(['server', 'state']),
         scoreboard: state.getIn(['game', 'scoreboard']),
         players: state.getIn(['game', 'players']),
         answer: state.getIn(['game', 'answer'])

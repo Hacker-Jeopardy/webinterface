@@ -20,6 +20,8 @@ export const AdminBoardStandalone = React.createClass({
     render: function() {
         const {state, rounds, scoreboard, players, answer} = this.props;
 
+        // TODO use state for events
+
         switch(state) {
             case 'new':
                 return (
