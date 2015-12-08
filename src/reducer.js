@@ -7,13 +7,25 @@ export default function(state = Map(), action) {
                 fromJS(action.state)
             );
 
-        case 'CONNECT':
-        case 'RECONNECT':
-        case 'CONNECTED':
-        case 'DISCONNECTED':
+        case 'SERVER':
             return state.mergeDeep(fromJS({
                 server: action.server
             }));
+
+        case 'EVENT':
+            return state.set('event', fromJS(action.event));
+        case 'CLEAR_EVENT':
+            return state.remove('event');
+
+        case 'ERROR':
+            // TODO append error
+            console.error(action.error);
+            return state;
+
+        default:
+            console.warn('unkown action type: ' + action.type);
+            console.dir(action);
+            break;
     }
 
     return state;

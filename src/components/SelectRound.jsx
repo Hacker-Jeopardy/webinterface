@@ -4,7 +4,13 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 export default React.createClass({
     mixins: [PureRenderMixin],
     propTypes: {
-        rounds: React.PropTypes.object
+        rounds: React.PropTypes.object,
+        select: React.PropTypes.func
+    },
+
+    select: function(event) {
+        let roundId = event.target.value;
+        this.props.select(roundId);
     },
 
     render: function() {

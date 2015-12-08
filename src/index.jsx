@@ -4,7 +4,7 @@ import Router, {Route} from 'react-router';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
-import {setState, onReconnect, onConnected, onDisconnected} from './action_creators';
+import {setState, onReconnect, onConnected, onDisconnected, clearEvent, logError, logException} from './action_creators';
 import App from 'components/App';
 import {SelectServer} from 'components/SelectServer';
 import {AdminBoard} from 'components/AdminBoard';
@@ -21,14 +21,28 @@ store.dispatch(
 );
 
 // TODO
-//let ws;
 let serverState = null;
+let event = null;
+let wsConnection = null;
 store.subscribe(() => {
     let storeState = store.getState();
     let oldState = serverState;
+    let oldEvent = event;
     serverState = storeState.getIn(['server', 'state']);
+    event = storeState.get('event');
 
-    // TODO send events in state to server
+    if(event != oldEvent && event) {
+        let eventJS = event.toJS();
+        console.log(eventJS);
+
+        if(wsConnection != null) {
+            wsConnection.send(JSON.stringify(eventJS));
+            store.dispatch(clearEvent());
+        }
+        else {
+            store.dispatch(logError('No websocket connection.'));
+        }
+    }
 
     if (serverState !== oldState) {
         if(serverState == 'connecting' || serverState == 'disconnected') {
@@ -47,16 +61,38 @@ store.subscribe(() => {
                         game: msg
                     }));
                 } else if (msg.error) {
-                    // TODO
-                    console.warn(msg);
+                    console.dir(msg);
+                    switch(msg.error) {
+                        case 'invalid_json':
+                            store.dispatch(logException('Invalid json sent. See console.'));
+                            break;
+
+                        case 'jeopardy_exception':
+                            store.dispatch(logError(msg.message));
+                            break;
+
+                        case 'exception':
+                            store.dispatch(logError(msg.message));
+                            break;
+
+                        default:
+                            store.dispatch(logException('Unknown error. See console.'));
+                            break;
+                    }
                 } else {
-                    console.warn(msg);
+                    // TODO
+                    console.dir(msg);
+                    store.dispatch(logException('Unknown message. See console.'));
                 }
             };
-            //ws.onData = e => console.log;
 
             ws.onopen = e => {
                 console.log(e);
+
+                if(wsConnection != null)
+                    wsConnection.close();
+
+                wsConnection = ws;
 
                 let msg = JSON.stringify({
                     event: 'ready'
@@ -73,9 +109,12 @@ store.subscribe(() => {
                 console.log(e);
                 store.dispatch(onDisconnected());
 
+                if(wsConnection == ws)
+                    wsConnection = null;
+
                 setTimeout(() => {
                     store.dispatch(onReconnect());
-                }, 100);
+                }, 1000);
             };
         }
     }

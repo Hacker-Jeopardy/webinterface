@@ -19,6 +19,7 @@ export const AdminBoardStandalone = React.createClass({
 
     render: function() {
         const {state, rounds, scoreboard, players, answer} = this.props;
+        const {eventSelectRound} = this.props;
 
         // TODO use state for events
 
@@ -28,7 +29,8 @@ export const AdminBoardStandalone = React.createClass({
                     <div id="app">
                         <header>Jeopardy!</header>
                         <SelectRound
-                            rounds={rounds} />
+                            rounds={rounds}
+                            select={eventSelectRound} />
                     </div>
                 );
 
