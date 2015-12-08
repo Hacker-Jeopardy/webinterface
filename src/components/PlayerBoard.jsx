@@ -6,6 +6,7 @@ import Connecting from 'components/Connecting';
 import InternetExplorerPlaceholder from 'components/InternetExplorerPlaceholder';
 import Scoreboard from 'components/Scoreboard';
 import PlayerList from 'components/PlayerList';
+import ErrorMessage from 'components/ErrorMessage';
 
 export const PlayerBoardStandalone = React.createClass({
     mixins: [PureRenderMixin],
@@ -70,9 +71,17 @@ export const PlayerBoardStandalone = React.createClass({
             case 'results':
                 // results
                 break;
+
+            default:
+                console.error('unknown state: ' + state);
+                break;
         }
 
-        return <p>// TODO</p>;
+        return (
+            <div id="app">
+                <ErrorMessage/>
+            </div>
+        );
     }
 });
 

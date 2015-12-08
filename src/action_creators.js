@@ -39,6 +39,11 @@ function event(data) {
         event: data
     };
 }
+export function eventReady() {
+    return event({
+        event: 'ready'
+    });
+}
 export function eventSelectRound(round_id) {
     return event({
         event: 'select_round',

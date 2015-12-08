@@ -4,9 +4,14 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 export default React.createClass({
     mixins: [PureRenderMixin],
     propTypes: {
-        points: React.PropTypes.string,
+        points: React.PropTypes.object,
         categories: React.PropTypes.object,
         players: React.PropTypes.object
+    },
+
+    select: function(event) {
+        //let roundId = event.target.value;
+        //this.props.select(roundId);
     },
 
     render: function() {
@@ -20,7 +25,7 @@ export default React.createClass({
             } else if (winner == null) {
                 return 'nobody';
             } else {
-                return players.getIn([winner, 'name'])  || 'unkown';
+                return players.getIn([winner, 'name'])  || 'unknown';
             }
         };
         const getWinnerClass = (points, i, cat) => {
@@ -32,7 +37,7 @@ export default React.createClass({
             } else if (winner == null) {
                 return 'nobody';
             } else {
-                //return players.getIn([winner, 'name'])  || 'unkown';
+                //return players.getIn([winner, 'name'])  || 'unknown';
                 return 'player1';
             }
         };
@@ -51,7 +56,7 @@ export default React.createClass({
             {points.map((points, i) =>
                 <tr>
                     {categories.map(cat =>
-                        <td className={getWinnerClass(points, i, cat)}>
+                        <td className={getWinnerClass(points, i, cat)} onclick={this.select}>
                             {getWinner(points, i, cat)}
                         </td>
                     )}

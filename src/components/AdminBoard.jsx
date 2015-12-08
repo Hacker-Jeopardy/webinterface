@@ -6,6 +6,7 @@ import InternetExplorerPlaceholder from 'components/InternetExplorerPlaceholder'
 import SelectRound from 'components/SelectRound';
 import Scoreboard from 'components/Scoreboard';
 import PlayerList from 'components/PlayerList';
+import ErrorMessage from 'components/ErrorMessage';
 
 export const AdminBoardStandalone = React.createClass({
     mixins: [PureRenderMixin],
@@ -63,9 +64,17 @@ export const AdminBoardStandalone = React.createClass({
             case 'results':
                 // results
                 break;
+
+            default:
+                console.error('unknown state: ' + state);
+                break;
         }
 
-        return <p>// TODO</p>;
+        return (
+            <div id="app">
+                <ErrorMessage/>
+            </div>
+        );
     }
 });
 

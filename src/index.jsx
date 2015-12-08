@@ -4,7 +4,7 @@ import Router, {Route} from 'react-router';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
-import {setState, onReconnect, onConnected, onDisconnected, clearEvent, logError, logException} from './action_creators';
+import {setState, onReconnect, onConnected, onDisconnected, eventReady, clearEvent, logError, logException} from './action_creators';
 import App from 'components/App';
 import {SelectServer} from 'components/SelectServer';
 import {AdminBoard} from 'components/AdminBoard';
@@ -88,18 +88,16 @@ store.subscribe(() => {
 
             ws.onopen = e => {
                 console.log(e);
-
-                if(wsConnection != null)
-                    wsConnection.close();
+                let wsOld = wsConnection;
 
                 wsConnection = ws;
 
-                let msg = JSON.stringify({
-                    event: 'ready'
-                });
-                ws.send(msg);
+                if(wsOld != null) {
+                    wsOld.close();
+                }
 
                 store.dispatch(onConnected());
+                store.dispatch(eventReady());
             };
 
             ws.onerror = e => {
@@ -107,14 +105,15 @@ store.subscribe(() => {
             };
             ws.onclose = e => {
                 console.log(e);
-                store.dispatch(onDisconnected());
 
-                if(wsConnection == ws)
+                if(wsConnection == ws) {
                     wsConnection = null;
+                    store.dispatch(onDisconnected());
 
-                setTimeout(() => {
-                    store.dispatch(onReconnect());
-                }, 1000);
+                    setTimeout(() => {
+                        store.dispatch(onReconnect());
+                    }, 1000);
+                }
             };
         }
     }

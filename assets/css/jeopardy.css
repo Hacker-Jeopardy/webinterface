@@ -95,6 +95,7 @@ table.scoreboard td:hover {
 
 div.placeholder {
     font-size: 4em;
+    margin-top: 30px;
 }
 div.placeholder i.fa {
     float: left;
