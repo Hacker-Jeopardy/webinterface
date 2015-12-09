@@ -48,8 +48,8 @@ export default React.createClass({
                 )}
 
                 {!onReconnectBuzzer ? '': (
-                    <span className="player-reconnect" onClick={this.reconnect} data-player={playerId}>
-                        <i className="fa fa-plus-circle"></i>
+                    <span className="player-reconnect" onClick={this.reconnect}>
+                        <i className="fa fa-plus-circle" data-player={playerId}></i>
                     </span>
                 )}
             </td>
