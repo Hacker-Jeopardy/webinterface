@@ -13,8 +13,9 @@ export default React.createClass({
         const {onReconnectBuzzer} = this.props;
 
         if(onReconnectBuzzer) {
-            const {playerId} = event.target.dataset;
-            onReconnectBuzzer(playerId);
+            const {player} = event.target.dataset;
+            console.log(event.target.dataset);
+            onReconnectBuzzer(player);
         }
     },
 
@@ -47,7 +48,7 @@ export default React.createClass({
                 )}
 
                 {!onReconnectBuzzer ? '': (
-                    <span className="player-reconnect" onClick={this.reconnect} data-playerId={playerId}>
+                    <span className="player-reconnect" onClick={this.reconnect} data-player={playerId}>
                         <i className="fa fa-plus-circle"></i>
                     </span>
                 )}

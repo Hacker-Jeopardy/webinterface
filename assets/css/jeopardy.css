@@ -163,6 +163,10 @@ div.answer {
     background: white;
     color: black;
 }
+div.answer img {
+    max-width: 80%;
+    max-height: 80%;
+}
 div.answer code {
     text-align: left;
 }
