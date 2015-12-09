@@ -75,6 +75,38 @@ export function eventSelectAnswer(category_index, answer_index) {
     });
 }
 
+function eventAnswer(type) {
+    return event({
+        event: type
+    });
+}
+export function eventAnswerWin() {
+    return eventAnswer('win');
+}
+export function eventAnswerFail() {
+    return eventAnswer('fail');
+}
+export function eventAnswerOops() {
+    return eventAnswer('oops');
+}
+export function eventAnswerExit() {
+    return eventAnswer('exit');
+}
+
+function eventConnect(type, device) {
+    return event({
+        event: 'connect_buzzergroup',
+        type: type,
+        device: device
+    });
+}
+export function eventConnectKeyboard(device) {
+    return eventConnect('keyboard', device)
+}
+export function eventConnectSerial(device) {
+    return eventConnect('serial', device)
+}
+
 export function clearEvent() {
     return {
         type: 'CLEAR_EVENT'

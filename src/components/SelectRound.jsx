@@ -5,12 +5,12 @@ export default React.createClass({
     mixins: [PureRenderMixin],
     propTypes: {
         rounds: React.PropTypes.object,
-        select: React.PropTypes.func
+        onSelect: React.PropTypes.func
     },
 
     select: function(event) {
         let roundId = event.target.value;
-        this.props.select(roundId);
+        this.props.onSelect(roundId);
     },
 
     render: function() {

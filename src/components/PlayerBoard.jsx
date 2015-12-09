@@ -18,16 +18,16 @@ export const PlayerBoardStandalone = React.createClass({
     },
 
     render: function() {
-        const {state, server_state, scoreboard, players, answer} = this.props;
+        const {server_state, state, scoreboard, players, answer} = this.props;
 
-        // TODO state connecting
-        if(server_state != 'connected')
+        if(server_state != 'connected') {
             return (
                 <div id="app">
                     <header>Jeopardy!</header>
                     <Connecting />
                 </div>
             );
+        }
 
         switch(state) {
             case 'new':
@@ -88,8 +88,8 @@ export const PlayerBoardStandalone = React.createClass({
 
 export const PlayerBoard = connect((state) => {
     return {
-        state: state.getIn(['game', 'state']),
         server_state: state.getIn(['server', 'state']),
+        state: state.getIn(['game', 'state']),
         scoreboard: state.getIn(['game', 'scoreboard']),
         players: state.getIn(['game', 'players']),
         answer: state.getIn(['game', 'answer'])

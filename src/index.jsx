@@ -45,7 +45,7 @@ store.subscribe(() => {
     }
 
     if (serverState !== oldState) {
-        if(serverState == 'connecting' || serverState == 'disconnected') {
+        if((serverState == 'connecting' || serverState == 'disconnected') && wsConnection == null) {
             let host = storeState.getIn(['server', 'host']);
             let port = storeState.getIn(['server', 'port']);
             let url = 'ws://' + host + ':' + port;
@@ -105,8 +105,9 @@ store.subscribe(() => {
             };
             ws.onclose = e => {
                 console.log(e);
+                console.log(wsConnection);
 
-                if(wsConnection == ws) {
+                if(wsConnection == ws || wsConnection == null) {
                     wsConnection = null;
                     store.dispatch(onDisconnected());
 

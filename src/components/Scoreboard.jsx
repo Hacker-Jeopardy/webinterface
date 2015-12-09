@@ -6,12 +6,15 @@ export default React.createClass({
     propTypes: {
         points: React.PropTypes.object,
         categories: React.PropTypes.object,
-        players: React.PropTypes.object
+        players: React.PropTypes.object,
+        onSelect: React.PropTypes.func
     },
 
     select: function(event) {
-        //let roundId = event.target.value;
-        //this.props.select(roundId);
+        if(this.props.onSelect) {
+            const {category, answer} = event.target.dataset;
+            this.props.onSelect(parseInt(category), parseInt(answer));
+        }
     },
 
     render: function() {
@@ -20,9 +23,9 @@ export default React.createClass({
             let winner = cat.getIn(['winner', i]);
 
             // TODO
-            if (winner == false) {
+            if (winner == null) {
                 return points;
-            } else if (winner == null) {
+            } else if (!winner) {
                 return 'nobody';
             } else {
                 return players.getIn([winner, 'name'])  || 'unknown';
@@ -38,7 +41,7 @@ export default React.createClass({
                 return 'nobody';
             } else {
                 //return players.getIn([winner, 'name'])  || 'unknown';
-                return 'player1';
+                return 'player' + i;
             }
         };
 
@@ -55,8 +58,8 @@ export default React.createClass({
             <tbody>
             {points.map((points, i) =>
                 <tr>
-                    {categories.map(cat =>
-                        <td className={getWinnerClass(points, i, cat)} onclick={this.select}>
+                    {categories.map((cat, cat_index) =>
+                        <td className={getWinnerClass(points, i, cat)} onClick={this.select} data-category={cat_index} data-answer={i}>
                             {getWinner(points, i, cat)}
                         </td>
                     )}

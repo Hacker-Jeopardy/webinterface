@@ -3,7 +3,9 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default React.createClass({
     mixins: [PureRenderMixin],
-    propTypes: {},
+    propTypes: {
+        errorMsg: React.PropTypes.string
+    },
 
     render: function() {
         // TODO add optional error message
