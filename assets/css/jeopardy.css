@@ -145,6 +145,27 @@ table.player-list .player-connected {
     color: darkred;
 }
 
+div.answer {
+    font-size: 4em;
+    border-radius: 25px;
+    border: rgba(255,255,255,0.75) 2px solid;
+    text-align: center;
+    background: white;
+    color: black;
+}
+div.answer code {
+    text-align: left;
+}
+div.answer code pre {
+    margin: 30px auto;
+    padding: 20px;
+    background: lightgrey;
+    text-align: left;
+    height: 80%;
+    width: 80%;
+}
+
+
 .nobody {
     background: lightgrey;
 }

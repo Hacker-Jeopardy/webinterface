@@ -2,6 +2,7 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import AdminConnectActions from 'components/AdminConnectActions';
 import AdminSetupActions from 'components/AdminSetupActions';
+import AdminAnswerActions from 'components/AdminAnswerActions';
 
 export default React.createClass({
     mixins: [PureRenderMixin],
@@ -13,7 +14,11 @@ export default React.createClass({
         onAddPlayer: React.PropTypes.func,
         onUpdatePlayerName: React.PropTypes.func,
         onConfirmPlayer: React.PropTypes.func,
-        onStartGame: React.PropTypes.func
+        onStartGame: React.PropTypes.func,
+        onAnswerWin: React.PropTypes.func,
+        onAnswerFail: React.PropTypes.func,
+        onAnswerOops: React.PropTypes.func,
+        onAnswerExit: React.PropTypes.func
     },
 
     refresh: function(event) {
@@ -24,7 +29,8 @@ export default React.createClass({
         const {state, newPlayer} = this.props;
         const {
             onConnectKeyboard, onConnectSerial,
-            onAddPlayer, onUpdatePlayerName, onConfirmPlayer, onStartGame
+            onAddPlayer, onUpdatePlayerName, onConfirmPlayer, onStartGame,
+            onAnswerWin, onAnswerFail, onAnswerOops, onAnswerExit
         } = this.props;
 
         return (
@@ -38,6 +44,11 @@ export default React.createClass({
                     onUpdatePlayerName={onUpdatePlayerName}
                     onConfirmPlayer={onConfirmPlayer}
                     onStartGame={onStartGame} />
+                <AdminAnswerActions
+                    onAnswerWin={onAnswerWin}
+                    onAnswerFail={onAnswerFail}
+                    onAnswerOops={onAnswerOops}
+                    onAnswerExit={onAnswerExit} />
 
                 <fieldset>
                     <button value="refresh" onClick={this.refresh} className="pure-button button-xlarge">

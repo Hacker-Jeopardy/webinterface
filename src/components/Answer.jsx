@@ -34,8 +34,13 @@ export default React.createClass({
                 return '';
 
             case 'code':
-                // TODO
-                return '';
+                return (
+                    <div className="answer">
+                        <code>
+                            <pre> {answer.get('data')} </pre>
+                        </code>
+                    </div>
+                );
         }
     }
 });

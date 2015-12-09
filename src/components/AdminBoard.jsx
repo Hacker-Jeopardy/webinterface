@@ -30,7 +30,8 @@ export const AdminBoardStandalone = React.createClass({
             eventConnectKeyboard, eventConnectSerial,
             eventAddPlayer, eventUpdatePlayerName, eventConfirmPlayer,
             eventStartGame,
-            eventSelectAnswer
+            eventSelectAnswer,
+            eventAnswerWin, eventAnswerFail, eventAnswerOops, eventAnswerExit
         } = this.props;
 
         if(serverState != 'connected') {
@@ -80,7 +81,11 @@ export const AdminBoardStandalone = React.createClass({
                                     onAddPlayer={eventAddPlayer}
                                     onUpdatePlayerName={eventUpdatePlayerName}
                                     onConfirmPlayer={eventConfirmPlayer}
-                                    onStartGame={eventStartGame} />
+                                    onStartGame={eventStartGame}
+                                    onAnswerWin={eventAnswerWin}
+                                    onAnswerFail={eventAnswerFail}
+                                    onAnswerOops={eventAnswerOops}
+                                    onAnswerExit={eventAnswerExit} />
 
                                 <AdminLog
                                     logList={logList} />
@@ -114,7 +119,11 @@ export const AdminBoardStandalone = React.createClass({
                                     onAddPlayer={eventAddPlayer}
                                     onUpdatePlayerName={eventUpdatePlayerName}
                                     onConfirmPlayer={eventConfirmPlayer}
-                                    onStartGame={eventStartGame} />
+                                    onStartGame={eventStartGame}
+                                    onAnswerWin={eventAnswerWin}
+                                    onAnswerFail={eventAnswerFail}
+                                    onAnswerOops={eventAnswerOops}
+                                    onAnswerExit={eventAnswerExit} />
 
                                 <AdminLog
                                     logList={logList} />
