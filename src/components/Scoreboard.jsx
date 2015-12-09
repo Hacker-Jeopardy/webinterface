@@ -35,9 +35,9 @@ export default React.createClass({
             let winner = cat.getIn(['winner', i]);
 
             // TODO use player color
-            if (winner == false) {
+            if (winner == null) {
                 return '';
-            } else if (winner == null) {
+            } else if (!winner) {
                 return 'nobody';
             } else {
                 //return players.getIn([winner, 'name'])  || 'unknown';
