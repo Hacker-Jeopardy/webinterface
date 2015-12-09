@@ -55,6 +55,12 @@ export function eventRefresh() {
         event: 'refresh'
     });
 }
+export function eventReconnectBuzzer(playerId) {
+    return event({
+        event: 'reconnect',
+        player: playerId
+    });
+}
 export function eventStartGame() {
     return event({
         event: 'start'

@@ -27,11 +27,19 @@ export default React.createClass({
 
             case 'audio':
                 // TODO
-                return '';
+                return (
+                    <div className="answer">
+                        <i className="fa fa-music fa-5x"></i>
+                    </div>
+                );
 
             case 'video':
                 // TODO
-                return '';
+                return (
+                    <div className="answer">
+                        <i className="fa fa-video-camera fa-5x"></i>
+                    </div>
+                );
 
             case 'code':
                 return (

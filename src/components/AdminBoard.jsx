@@ -27,6 +27,7 @@ export const AdminBoardStandalone = React.createClass({
         const {serverState, state, rounds, scoreboard, players, newPlayer, answer, buzzorder, logList} = this.props;
         const {
             eventRefresh,
+            eventReconnectBuzzer,
             eventSelectRound,
             eventConnectKeyboard, eventConnectSerial,
             eventAddPlayer, eventUpdatePlayerName, eventConfirmPlayer,
@@ -95,7 +96,8 @@ export const AdminBoardStandalone = React.createClass({
                         </div>
                         <PlayerList
                             players={players}
-                            newPlayer={newPlayer} />
+                            newPlayer={newPlayer}
+                            onReconnectBuzzer={eventReconnectBuzzer} />
                     </div>
                 );
 
@@ -113,7 +115,8 @@ export const AdminBoardStandalone = React.createClass({
                                     answer={answer} />
                             </div>
                             <div className="pure-u-1-3">
-                                <p>State: {state} </p>
+                                <p>State: {state}</p>
+
                                 <AdminActions
                                     newPlayer={newPlayer}
                                     onRefresh={eventRefresh}
@@ -137,7 +140,8 @@ export const AdminBoardStandalone = React.createClass({
                             players={players} />
                         <PlayerList
                             players={players}
-                            newPlayer={newPlayer} />
+                            newPlayer={newPlayer}
+                            onReconnectBuzzer={eventReconnectBuzzer} />
                     </div>
                 );
                 break;

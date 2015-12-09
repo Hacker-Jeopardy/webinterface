@@ -5,15 +5,26 @@ export default React.createClass({
     mixins: [PureRenderMixin],
     propTypes: {
         players: React.PropTypes.object,
-        newPlayer: React.PropTypes.object
+        newPlayer: React.PropTypes.object,
+        onReconnectBuzzer: React.PropTypes.func
+    },
+
+    reconnect: function(event) {
+        const {onReconnectBuzzer} = this.props;
+
+        if(onReconnectBuzzer) {
+            const {playerId} = event.target.dataset;
+            onReconnectBuzzer(playerId);
+        }
     },
 
     render: function() {
         const {players, newPlayer} = this.props;
+        const {onReconnectBuzzer} = this.props;
         let playerIndex = 0;
 
         // TODO color
-        const renderPlayer = player => (
+        const renderPlayer = (player, playerId) => (
             <td className={'player' + playerIndex++}>
                 {/* TODO !player.get('active') ? '': (
                     <span className="player-active">
@@ -32,6 +43,12 @@ export default React.createClass({
                 {player.get('connected') ? '': (
                     <span className="player-connected">
                         <i className="fa fa-plug"></i>
+                    </span>
+                )}
+
+                {!onReconnectBuzzer ? '': (
+                    <span className="player-reconnect" onClick={this.reconnect} data-playerId={playerId}>
+                        <i className="fa fa-plus-circle"></i>
                     </span>
                 )}
             </td>

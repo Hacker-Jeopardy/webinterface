@@ -149,8 +149,12 @@ table.player-list .player-score:after, table.buzzer-list .buzzer-time:after {
 table.player-list .player-connected {
     margin-left: 10px;
     color: darkred;
-}
 
+}
+table.player-list .player-reconnect {
+    cursor: pointer;
+    margin-left: 10px;
+}
 div.answer {
     font-size: 4em;
     border-radius: 25px;
