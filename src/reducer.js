@@ -6,6 +6,16 @@ const INITIAL_STATE = fromJS({
     log: []
 });
 
+function setBuzzorder(state, buzzorder) {
+    let game = state.get('game').toJS();
+    game.buzzorder = buzzorder;
+
+    state = state.set('game', fromJS(game));
+    console.dir(state.toJS());
+
+    return state;
+}
+
 function addToLog(state, error) {
     let log = state.get('log');
 
@@ -20,6 +30,8 @@ export default function(state = INITIAL_STATE, action) {
             return state.merge(
                 fromJS(action.state)
             );
+        case 'SET_BUZZORDER':
+            return setBuzzorder(state, action.buzzorder);
 
         case 'SERVER':
             return state.mergeDeep(fromJS({
@@ -31,6 +43,8 @@ export default function(state = INITIAL_STATE, action) {
         case 'CLEAR_EVENT':
             return state.remove('event');
 
+        case 'LOG':
+            return addToLog(state, action.log);
         case 'ERROR':
             return addToLog(state, action.error);
 

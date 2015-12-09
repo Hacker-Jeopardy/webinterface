@@ -7,6 +7,7 @@ import InternetExplorerPlaceholder from 'components/InternetExplorerPlaceholder'
 import Scoreboard from 'components/Scoreboard';
 import Answer from 'components/Answer';
 import PlayerList from 'components/PlayerList';
+import BuzzerList from 'components/BuzzerList';
 import ErrorMessage from 'components/ErrorMessage';
 
 export const PlayerBoardStandalone = React.createClass({
@@ -19,7 +20,7 @@ export const PlayerBoardStandalone = React.createClass({
     },
 
     render: function() {
-        const {serverState, state, scoreboard, players, newPlayer, answer} = this.props;
+        const {serverState, state, scoreboard, players, newPlayer, answer, buzzorder} = this.props;
 
         if(serverState != 'connected') {
             return (
@@ -60,6 +61,9 @@ export const PlayerBoardStandalone = React.createClass({
                         <header>Jeopardy!</header>
                         <Answer
                             answer={answer} />
+                        <BuzzerList
+                            buzzorder={buzzorder}
+                            players={players} />
                         <PlayerList
                             players={players} />
                     </div>
@@ -95,6 +99,7 @@ export const PlayerBoard = connect((state) => {
         scoreboard: state.getIn(['game', 'scoreboard']),
         players: state.getIn(['game', 'players']),
         newPlayer: state.getIn(['game', 'new_player']),
-        answer: state.getIn(['game', 'answer'])
+        answer: state.getIn(['game', 'answer']),
+        buzzorder: state.getIn(['game', 'buzzorder'])
     };
 }, actionCreators)(PlayerBoardStandalone);

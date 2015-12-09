@@ -4,7 +4,12 @@ import Router, {Route} from 'react-router';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
-import {setState, onReconnect, onConnected, onDisconnected, eventReady, clearEvent, logError, logException} from './action_creators';
+import {
+    setState, setBuzzorder,
+    onReconnect, onConnected, onDisconnected,
+    eventReady, clearEvent,
+    logMessage, logError, logException
+} from './action_creators';
 import App from 'components/App';
 import {SelectServer} from 'components/SelectServer';
 import {AdminBoard} from 'components/AdminBoard';
@@ -60,6 +65,9 @@ store.subscribe(() => {
                     store.dispatch(setState({
                         game: msg
                     }));
+                } else if (msg.buzzorder) {
+                    console.log(msg);
+                    store.dispatch(setBuzzorder(msg.buzzorder));
                 } else if (msg.error) {
                     console.dir(msg);
                     switch(msg.error) {
@@ -67,18 +75,12 @@ store.subscribe(() => {
                             store.dispatch(logException('Invalid json sent. See console.'));
                             break;
 
-                        case 'jeopardy_exception':
-                            store.dispatch(logError(msg.message));
-                            break;
-
-                        case 'exception':
-                            store.dispatch(logError(msg.message));
-                            break;
-
                         default:
-                            store.dispatch(logException('Unknown error. See console.'));
+                            store.dispatch(logError(msg.error + ': ' + msg.message));
                             break;
                     }
+                } else if(msg.connection) {
+                    store.dispatch(logMessage('Connecting "' + msg.device + '" ' + msg.connection));
                 } else {
                     // TODO
                     console.dir(msg);

@@ -4,6 +4,12 @@ export function setState(state) {
         state: state
     };
 }
+export function setBuzzorder(buzzorder) {
+    return {
+        type: 'SET_BUZZORDER',
+        buzzorder: buzzorder
+    };
+}
 
 function mergeServer(server) {
     return {
@@ -137,4 +143,14 @@ export function logError(msg) {
 }
 export function logException(msg) {
     return error('exception', msg);
+}
+
+
+export function logMessage(msg) {
+    return {
+        type: 'LOG',
+        log: {
+            msg: msg
+        }
+    };
 }

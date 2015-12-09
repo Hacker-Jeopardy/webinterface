@@ -117,27 +117,33 @@ table.player-list {
     right: 0;
     bottom: 0;
 }
-table.player-list tr:first-child td:first-child {
+table.buzzer-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+}
+table.player-list tr:first-child td:first-child, table.buzzer-list tr:first-child td:first-child {
     border-top-left-radius: 5px;
 }
-table.player-list tr:first-child td:last-child {
+table.player-list tr:first-child td:last-child, table.buzzer-list tr:first-child td:first-child {
     border-top-right-radius: 5px;
 }
-table.player-list td {
+table.player-list td, table.buzzer-list td {
     border-bottom: none;
 }
 table.player-list .player-active {
     margin-right: 10px;
     color: darkgreen;
 }
-table.player-list .player-score:before {
+table.player-list .player-score:before, table.buzzer-list .buzzer-time:before {
     content: '[';
 }
-table.player-list .player-score {
+table.player-list .player-score, table.buzzer-list .buzzer-time {
     margin-left: 10px;
     font-weight: bold;
 }
-table.player-list .player-score:after {
+table.player-list .player-score:after, table.buzzer-list .buzzer-time:after {
     content: ']';
 }
 table.player-list .player-connected {

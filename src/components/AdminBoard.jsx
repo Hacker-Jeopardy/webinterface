@@ -9,6 +9,7 @@ import SelectRound from 'components/SelectRound';
 import Scoreboard from 'components/Scoreboard';
 import Answer from 'components/Answer';
 import PlayerList from 'components/PlayerList';
+import BuzzerList from 'components/BuzzerList';
 import ErrorMessage from 'components/ErrorMessage';
 import AdminLog from 'components/AdminLog';
 
@@ -23,7 +24,7 @@ export const AdminBoardStandalone = React.createClass({
     },
 
     render: function() {
-        const {serverState, state, rounds, scoreboard, players, newPlayer, answer, logList} = this.props;
+        const {serverState, state, rounds, scoreboard, players, newPlayer, answer, buzzorder, logList} = this.props;
         const {
             eventRefresh,
             eventSelectRound,
@@ -73,6 +74,7 @@ export const AdminBoardStandalone = React.createClass({
                                     onSelect={eventSelectAnswer} />
                             </div>
                             <div className="pure-u-1-3">
+                                <p>State: {state} </p>
                                 <AdminActions
                                     newPlayer={newPlayer}
                                     onRefresh={eventRefresh}
@@ -111,6 +113,7 @@ export const AdminBoardStandalone = React.createClass({
                                     answer={answer} />
                             </div>
                             <div className="pure-u-1-3">
+                                <p>State: {state} </p>
                                 <AdminActions
                                     newPlayer={newPlayer}
                                     onRefresh={eventRefresh}
@@ -129,6 +132,9 @@ export const AdminBoardStandalone = React.createClass({
                                     logList={logList} />
                             </div>
                         </div>
+                        <BuzzerList
+                            buzzorder={buzzorder}
+                            players={players} />
                         <PlayerList
                             players={players}
                             newPlayer={newPlayer} />
@@ -167,6 +173,7 @@ export const AdminBoard = connect((state) => {
         players: state.getIn(['game', 'players']),
         newPlayer: state.getIn(['game', 'new_player']),
         answer: state.getIn(['game', 'answer']),
+        buzzorder: state.getIn(['game', 'buzzorder']),
         logList: state.get('log')
     };
 }, actionCreators)(AdminBoardStandalone);
