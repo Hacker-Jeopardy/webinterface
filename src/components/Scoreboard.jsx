@@ -41,11 +41,20 @@ export default React.createClass({
                 return 'nobody';
             } else {
                 //return players.getIn([winner, 'name'])  || 'unknown';
-                let w = cat.get('winner');
+                /*let w = cat.get('player');
                 if(w) {
-                    let index = w.indexOf(winner);
-                    return 'player' + index;
-                }
+                    /*let index = 0;
+                    players.map((player, player_id) => {
+                        console.log(player);
+                        console.log(player_id);
+                        if(player_id == winner)
+                            return 'player' + index;
+                        else
+                            index++;
+                    });
+                }*/
+
+                return 'player' + winner;
             }
         };
 
