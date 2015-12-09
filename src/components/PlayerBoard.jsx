@@ -5,6 +5,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Connecting from 'components/Connecting';
 import InternetExplorerPlaceholder from 'components/InternetExplorerPlaceholder';
 import Scoreboard from 'components/Scoreboard';
+import Answer from 'components/Answer';
 import PlayerList from 'components/PlayerList';
 import ErrorMessage from 'components/ErrorMessage';
 
@@ -18,9 +19,9 @@ export const PlayerBoardStandalone = React.createClass({
     },
 
     render: function() {
-        const {server_state, state, scoreboard, players, answer} = this.props;
+        const {serverState, state, scoreboard, players, newPlayer, answer} = this.props;
 
-        if(server_state != 'connected') {
+        if(serverState != 'connected') {
             return (
                 <div id="app">
                     <header>Jeopardy!</header>
@@ -48,7 +49,8 @@ export const PlayerBoardStandalone = React.createClass({
                             categories={scoreboard.get('categories')}
                             players={players} />
                         <PlayerList
-                            players={players} />
+                            players={players}
+                            newPlayer={newPlayer} />
                     </div>
                 );
 
@@ -57,7 +59,7 @@ export const PlayerBoardStandalone = React.createClass({
                     <div id="app">
                         <header>Jeopardy!</header>
                         <Answer
-                            answer={scoreboard.get('answer')} />
+                            answer={answer} />
                         <PlayerList
                             players={players} />
                     </div>
@@ -88,10 +90,11 @@ export const PlayerBoardStandalone = React.createClass({
 
 export const PlayerBoard = connect((state) => {
     return {
-        server_state: state.getIn(['server', 'state']),
+        serverState: state.getIn(['server', 'state']),
         state: state.getIn(['game', 'state']),
         scoreboard: state.getIn(['game', 'scoreboard']),
         players: state.getIn(['game', 'players']),
+        newPlayer: state.getIn(['game', 'new_player']),
         answer: state.getIn(['game', 'answer'])
     };
 }, actionCreators)(PlayerBoardStandalone);

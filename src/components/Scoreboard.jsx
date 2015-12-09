@@ -22,7 +22,7 @@ export default React.createClass({
         const getWinner = (points, i, cat) => {
             let winner = cat.getIn(['winner', i]);
 
-            // TODO
+            // TODO be more stupid
             if (winner == null) {
                 return points;
             } else if (!winner) {
@@ -34,7 +34,7 @@ export default React.createClass({
         const getWinnerClass = (points, i, cat) => {
             let winner = cat.getIn(['winner', i]);
 
-            // TODO
+            // TODO use player color
             if (winner == false) {
                 return '';
             } else if (winner == null) {

@@ -44,6 +44,16 @@ export function eventReady() {
         event: 'ready'
     });
 }
+export function eventRefresh() {
+    return event({
+        event: 'refresh'
+    });
+}
+export function eventStartGame() {
+    return event({
+        event: 'start'
+    });
+}
 export function eventSelectRound(round_id) {
     return event({
         event: 'select_round',

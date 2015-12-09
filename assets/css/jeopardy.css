@@ -102,6 +102,10 @@ div.placeholder i.fa {
     margin-right: 0.15em;
 }
 
+div#admin_actions, div#admin_log {
+    padding-left: 15px;
+}
+
 table.scoreboard, table.player-list {
     width: 100%;
     table-layout: fixed;

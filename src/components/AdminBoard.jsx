@@ -7,9 +7,10 @@ import InternetExplorerPlaceholder from 'components/InternetExplorerPlaceholder'
 import AdminActions from 'components/AdminActions';
 import SelectRound from 'components/SelectRound';
 import Scoreboard from 'components/Scoreboard';
+import Answer from 'components/Answer';
 import PlayerList from 'components/PlayerList';
 import ErrorMessage from 'components/ErrorMessage';
-import Log from 'components/Log';
+import AdminLog from 'components/AdminLog';
 
 export const AdminBoardStandalone = React.createClass({
     mixins: [PureRenderMixin],
@@ -22,15 +23,17 @@ export const AdminBoardStandalone = React.createClass({
     },
 
     render: function() {
-        const {server_state, state, rounds, scoreboard, players, newPlayer, answer} = this.props;
+        const {serverState, state, rounds, scoreboard, players, newPlayer, answer, logList} = this.props;
         const {
+            eventRefresh,
             eventSelectRound,
             eventConnectKeyboard, eventConnectSerial,
             eventAddPlayer, eventUpdatePlayerName, eventConfirmPlayer,
+            eventStartGame,
             eventSelectAnswer
         } = this.props;
 
-        if(server_state != 'connected') {
+        if(serverState != 'connected') {
             return (
                 <div id="app">
                     <header>Jeopardy!</header>
@@ -71,21 +74,57 @@ export const AdminBoardStandalone = React.createClass({
                             <div className="pure-u-1-3">
                                 <AdminActions
                                     newPlayer={newPlayer}
+                                    onRefresh={eventRefresh}
                                     onConnectKeyboard={eventConnectKeyboard}
                                     onConnectSerial={eventConnectSerial}
                                     onAddPlayer={eventAddPlayer}
                                     onUpdatePlayerName={eventUpdatePlayerName}
-                                    onConfirmPlayer={eventConfirmPlayer} />
-                                <Log />
+                                    onConfirmPlayer={eventConfirmPlayer}
+                                    onStartGame={eventStartGame} />
+
+                                <AdminLog
+                                    logList={logList} />
                             </div>
                         </div>
                         <PlayerList
-                            players={players} />
+                            players={players}
+                            newPlayer={newPlayer} />
                     </div>
                 );
 
             case 'answer':
                 // answer
+                return (
+                    <div id="app">
+                        <header>
+                            Jeopardy!
+                        </header>
+
+                        <div className="pure-g">
+                            <div className="pure-u-2-3">
+                                <Answer
+                                    answer={answer} />
+                            </div>
+                            <div className="pure-u-1-3">
+                                <AdminActions
+                                    newPlayer={newPlayer}
+                                    onRefresh={eventRefresh}
+                                    onConnectKeyboard={eventConnectKeyboard}
+                                    onConnectSerial={eventConnectSerial}
+                                    onAddPlayer={eventAddPlayer}
+                                    onUpdatePlayerName={eventUpdatePlayerName}
+                                    onConfirmPlayer={eventConfirmPlayer}
+                                    onStartGame={eventStartGame} />
+
+                                <AdminLog
+                                    logList={logList} />
+                            </div>
+                        </div>
+                        <PlayerList
+                            players={players}
+                            newPlayer={newPlayer} />
+                    </div>
+                );
                 break;
 
             case 'double_jeopardy':
@@ -112,12 +151,13 @@ export const AdminBoardStandalone = React.createClass({
 
 export const AdminBoard = connect((state) => {
     return {
-        server_state: state.getIn(['server', 'state']),
+        serverState: state.getIn(['server', 'state']),
         state: state.getIn(['game', 'state']),
         rounds: state.getIn(['game', 'rounds']),
         scoreboard: state.getIn(['game', 'scoreboard']),
         players: state.getIn(['game', 'players']),
         newPlayer: state.getIn(['game', 'new_player']),
-        answer: state.getIn(['game', 'answer'])
+        answer: state.getIn(['game', 'answer']),
+        logList: state.get('log')
     };
 }, actionCreators)(AdminBoardStandalone);

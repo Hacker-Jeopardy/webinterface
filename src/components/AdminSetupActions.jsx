@@ -7,21 +7,24 @@ export default React.createClass({
         state: React.PropTypes.string,
         onAddPlayer: React.PropTypes.func,
         onUpdatePlayerName: React.PropTypes.func,
-        onConfirmPlayer: React.PropTypes.func
+        onConfirmPlayer: React.PropTypes.func,
+        onStartGame: React.PropTypes.func
     },
 
     addPlayer: function(event) {
         let color = '#000000';
         this.props.onAddPlayer(color);
     },
-
     changePlayerName: function(event) {
         const playerName = event.target.value;
         this.props.onUpdatePlayerName(playerName);
     },
-
     confirmPlayer: function(event) {
         this.props.onConfirmPlayer();
+    },
+
+    startGame: function(event) {
+        this.props.onStartGame();
     },
 
     render: function() {
@@ -41,6 +44,10 @@ export default React.createClass({
                 <fieldset>
                     <button value="addPlayer" onClick={this.addPlayer} className="pure-button button-xlarge">
                         Add Player
+                    </button>
+
+                    <button value="startGame" onClick={this.startGame} className="pure-button button-xlarge">
+                        Start Game
                     </button>
                 </fieldset>
             );
