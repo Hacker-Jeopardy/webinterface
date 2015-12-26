@@ -5,7 +5,7 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
 import {
-    setState, setBuzzorder,
+    setState, mergeServer, setBuzzorder,
     onReconnect, onConnected, onDisconnected,
     eventReady, clearEvent,
     logMessage, logError, logException
@@ -16,14 +16,24 @@ import {AdminBoard} from 'components/AdminBoard';
 import {PlayerBoard} from 'components/PlayerBoard';
 
 const store = createStore(reducer);
-store.dispatch(
-    setState({
-        server: {
-            host: '192.168.83.32',
-            port: 4242
-        }
-    })
-);
+
+const initServerConfig = () => {
+    let host = localStorage.getItem('server.host');
+    let port = localStorage.getItem('server.port');
+
+    host = (host == null) ? 'localhost' : host;
+    port = (port == null) ? 4242 : parseInt(port);
+
+    store.dispatch(
+        setState({
+            server: {
+                host: host,
+                port: port
+            }
+        })
+    );
+};
+initServerConfig();
 
 // TODO
 let serverState = null;
@@ -54,6 +64,10 @@ store.subscribe(() => {
             let host = storeState.getIn(['server', 'host']);
             let port = storeState.getIn(['server', 'port']);
             let url = 'ws://' + host + ':' + port;
+
+            // save config
+            localStorage.setItem('server.host', host);
+            localStorage.setItem('server.port', port);
 
             let ws = new WebSocket(url, ['protocolOne', 'protocolTwo']);
             ws.onmessage = e => {
