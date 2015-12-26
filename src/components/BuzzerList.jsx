@@ -11,15 +11,15 @@ export default React.createClass({
     render: function() {
         const {buzzorder, players} = this.props;
 
-        const getPlayer = player_id => {
-            return !players ? Map() : players.get(player_id);
+        const getPlayerName = player_id => {
+            return !players ? '' : players.get(player_id).get('name');
         };
 
         // TODO idk
         const renderBuzzer = (buzzer_time, player_id) => (
             <td className={'player' + player_id}>
                 <span className="player-name">
-                    {getPlayer(player_id).get('name')}
+                    {getPlayerName(player_id)}
                 </span>
 
                 <span className="buzzer-time">
