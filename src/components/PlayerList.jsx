@@ -6,6 +6,7 @@ export default React.createClass({
     propTypes: {
         players: React.PropTypes.object,
         newPlayer: React.PropTypes.object,
+        currentPlayer: React.PropTypes.string,
         onReconnectBuzzer: React.PropTypes.func
     },
 
@@ -20,18 +21,17 @@ export default React.createClass({
     },
 
     render: function() {
-        const {players, newPlayer} = this.props;
+        const {players, newPlayer, currentPlayer} = this.props;
         const {onReconnectBuzzer} = this.props;
-        let playerIndex = 0;
 
         // TODO color
-        const renderPlayer = (player, playerId) => (
-            <td className={'player' + playerIndex++}>
-                {/* TODO !player.get('active') ? '': (
+        const renderPlayer = (player, playerIndex) => (
+            <td className={'player' + playerIndex}>
+                { player.get('id') != currentPlayer ? '': (
                     <span className="player-active">
                         <i className="fa fa-circle"></i>
                     </span>
-                )*/}
+                )}
 
                 <span className="player-name">
                     {player.get('name')}
@@ -49,7 +49,7 @@ export default React.createClass({
 
                 {!onReconnectBuzzer ? '': (
                     <span className="player-reconnect" onClick={this.reconnect}>
-                        <i className="fa fa-plus-circle" data-player={playerId}></i>
+                        <i className="fa fa-plus-circle" data-player={player.get('id')}></i>
                     </span>
                 )}
             </td>
