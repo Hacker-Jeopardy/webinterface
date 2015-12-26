@@ -24,9 +24,13 @@ export default React.createClass({
         const {players, newPlayer, currentPlayer} = this.props;
         const {onReconnectBuzzer} = this.props;
 
+        const getPlayerStyle = player => {
+            return { backgroundColor: player.get('color') };
+        };
+
         // TODO color
         const renderPlayer = (player, playerIndex) => (
-            <td className={'player' + playerIndex}>
+            <td style={getPlayerStyle(player)}>
                 { player.get('id') != currentPlayer ? '': (
                     <span className="player-active">
                         <i className="fa fa-circle"></i>
@@ -42,14 +46,8 @@ export default React.createClass({
                 </span>
 
                 {player.get('connected') ? '': (
-                    <span className="player-connected">
-                        <i className="fa fa-plug"></i>
-                    </span>
-                )}
-
-                {!onReconnectBuzzer ? '': (
-                    <span className="player-reconnect" onClick={this.reconnect}>
-                        <i className="fa fa-plus-circle" data-player={player.get('id')}></i>
+                    <span className={this.reconnect ? 'player-connected player-reconnect' : 'player-connected'} onClick={this.reconnect}>
+                        <i className="fa fa-plug" data-player={player.get('id')}></i>
                     </span>
                 )}
             </td>

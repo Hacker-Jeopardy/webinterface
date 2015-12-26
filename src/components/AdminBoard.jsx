@@ -77,6 +77,7 @@ export const AdminBoardStandalone = React.createClass({
                             <div className="pure-u-1-3">
                                 <p>State: {state} </p>
                                 <AdminActions
+                                    state={state}
                                     newPlayer={newPlayer}
                                     onRefresh={eventRefresh}
                                     onConnectKeyboard={eventConnectKeyboard}
@@ -119,6 +120,7 @@ export const AdminBoardStandalone = React.createClass({
                                 <p>State: {state}</p>
 
                                 <AdminActions
+                                    state={state}
                                     newPlayer={newPlayer}
                                     onRefresh={eventRefresh}
                                     onConnectKeyboard={eventConnectKeyboard}

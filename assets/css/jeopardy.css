@@ -149,11 +149,9 @@ table.player-list .player-score:after, table.buzzer-list .buzzer-time:after {
 table.player-list .player-connected {
     margin-left: 10px;
     color: darkred;
-
 }
 table.player-list .player-reconnect {
     cursor: pointer;
-    margin-left: 10px;
 }
 div.answer {
     font-size: 4em;
@@ -179,31 +177,6 @@ div.answer code pre {
     width: 80%;
 }
 
-
 .nobody {
     background: lightgrey;
-}
-.player0 {
-    background: mediumseagreen;
-}
-.player1 {
-    background: goldenrod;
-}
-.player2 {
-    background: purple;
-}
-.player3 {
-    background: darkslategrey;
-}
-.player4 {
-    background: lightcoral;
-}
-.player5 {
-    background: limegreen;
-}
-.player6 {
-    background: dodgerblue;
-}
-.player7 {
-    background: orangered;
 }

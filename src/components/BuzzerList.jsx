@@ -11,19 +11,26 @@ export default React.createClass({
     render: function() {
         const {buzzorder, players} = this.props;
 
-        const getPlayerName = player_id => {
-            return !players ? '' : players.get(player_id).get('name');
+        const getPlayer = player => {
+            return players.get(player.get('id'));
         };
 
-        // TODO idk
-        const renderBuzzer = (buzzer_time, player_id) => (
-            <td className={'player' + player_id}>
+        const getPlayerName = player => {
+            return !players ? '' : getPlayer(player).get('name');
+        };
+        const getPlayerStyle = player => {
+            return { backgroundColor: getPlayer(player).get('color') };
+        };
+
+        // TODO color
+        const renderBuzzer = (player) => (
+            <td style={getPlayerStyle(player)}>
                 <span className="player-name">
-                    {getPlayerName(player_id)}
+                    {getPlayerName(player)}
                 </span>
 
                 <span className="buzzer-time">
-                    + {buzzer_time} ms
+                    + {player.get('time')} ms
                 </span>
             </td>
         );
