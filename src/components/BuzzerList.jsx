@@ -22,7 +22,6 @@ export default React.createClass({
             return { backgroundColor: getPlayer(player).get('color') };
         };
 
-        // TODO color
         const renderBuzzer = (player) => (
             <td style={getPlayerStyle(player)}>
                 <span className="player-name">

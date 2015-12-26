@@ -22,13 +22,11 @@ export default React.createClass({
 
     render: function() {
         const {players, newPlayer, currentPlayer} = this.props;
-        const {onReconnectBuzzer} = this.props;
 
         const getPlayerStyle = player => {
             return { backgroundColor: player.get('color') };
         };
 
-        // TODO color
         const renderPlayer = (player, playerIndex) => (
             <td style={getPlayerStyle(player)}>
                 { player.get('id') != currentPlayer ? '': (

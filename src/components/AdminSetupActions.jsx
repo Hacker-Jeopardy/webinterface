@@ -14,16 +14,6 @@ export default React.createClass({
     addPlayer: function(event) {
         // TODO color
         let color = '#000000';
-        let colorArray = [
-            '#3CB371',
-            '#DAA520',
-            '#800080',
-            '#2F4F4F',
-            '#F08080',
-            '#32CD32',
-            '#1E90FF',
-            '#FF4500'
-        ];
 
         this.props.onAddPlayer(color);
     },
@@ -42,6 +32,27 @@ export default React.createClass({
     render: function() {
         const {newPlayer} = this.props;
 
+        const colors = [
+            '#3CB371',
+            '#DAA520',
+            '#800080',
+            '#2F4F4F',
+            '#F08080',
+            '#32CD32',
+            '#1E90FF',
+            '#FF4500'
+        ];
+        const getColor = color => {
+            //let colorStyle = { color: color };
+            //<i className="fa fa-circle" style={colorStyle}></i>
+
+            return (
+                <option value={color}>
+                    {color}
+                </option>
+            );
+        };
+
         if(newPlayer) {
             return (
                 <fieldset>
@@ -54,6 +65,9 @@ export default React.createClass({
         } else {
             return (
                 <fieldset>
+                    <select name="playerColor">
+                        {colors.map(getColor)}
+                    </select>
                     <button value="addPlayer" onClick={this.addPlayer} className="pure-button button-xlarge">
                         Add Player
                     </button>
