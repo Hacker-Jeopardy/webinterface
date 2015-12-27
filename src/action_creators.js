@@ -97,6 +97,14 @@ export function eventSelectAnswer(category_index, answer_index) {
     });
 }
 
+export function eventUpdateScore(player_id, new_score) {
+    return event({
+        event: 'update_score',
+        player: player_id,
+        score: new_score
+    });
+}
+
 function eventAnswer(type) {
     return event({
         event: type

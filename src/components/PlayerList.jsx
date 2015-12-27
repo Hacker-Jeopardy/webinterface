@@ -7,7 +7,21 @@ export default React.createClass({
         players: React.PropTypes.object,
         newPlayer: React.PropTypes.object,
         currentPlayer: React.PropTypes.string,
+        onUpdateScore: React.PropTypes.func,
         onReconnectBuzzer: React.PropTypes.func
+    },
+
+    updateScore: function (event) {
+        const {onUpdateScore} = this.props;
+
+        if(onUpdateScore) {
+            const {player, score} = event.target.dataset;
+
+            let newScore = prompt("Enter new score", score);
+            if(newScore != null) {
+                onUpdateScore(player, parseInt(newScore));
+            }
+        }
     },
 
     reconnect: function(event) {
@@ -15,7 +29,6 @@ export default React.createClass({
 
         if(onReconnectBuzzer) {
             const {player} = event.target.dataset;
-            console.log(event.target.dataset);
             onReconnectBuzzer(player);
         }
     },
@@ -39,7 +52,7 @@ export default React.createClass({
                     {player.get('name')}
                 </span>
 
-                <span className="player-score">
+                <span className="player-score" onClick={this.updateScore} data-player={player.get('id')} data-score={player.get('score')}>
                     {player.get('score')}
                 </span>
 
