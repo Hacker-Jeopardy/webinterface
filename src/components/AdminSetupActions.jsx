@@ -1,18 +1,17 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-const colors = {
-    '#3CB371': 'mediumseagreen',
-    '#DAA520': 'goldenrod',
-    '#800080': 'purple',
-    '#2F4F4F': 'darkslategrey',
-    '#F08080': 'lightcoral',
-    '#32CD32': 'limegreen',
-    '#1E90FF': 'dodgerblue',
-    '#FF4500': 'orangered',
-    '#000000': 'black'
-};
-const color_keys = Object.keys(colors);
+const colors = [
+    '#3CB371', // mediumseagreen
+    '#DAA520', // goldenrod
+    '#800080', // purple
+    '#2F4F4F', // darkslategrey
+    '#F08080', // lightcoral
+    '#32CD32', // limegreen
+    '#1E90FF', // dodgerblue
+    '#FF4500', // orangered
+    '#000000'  // black
+];
 
 export default React.createClass({
     mixins: [PureRenderMixin],
@@ -24,18 +23,9 @@ export default React.createClass({
         onStartGame: React.PropTypes.func
     },
 
-    getInitialState: function() {
-        return {
-            color: color_keys[this.props.playerCount % color_keys.length]
-        };
-    },
-
-    changeColor: function(event) {
-        this.setState({color: event.target.value});
-    },
-
     addPlayer: function(event) {
-        this.props.onAddPlayer(this.state.color);
+        const color = colors[this.props.playerCount % colors.length];
+        this.props.onAddPlayer(color);
     },
     changePlayerName: function(event) {
         const playerName = event.target.value;
@@ -52,14 +42,6 @@ export default React.createClass({
     render: function() {
         const {newPlayer} = this.props;
 
-        const getColor = (color) => {
-            return (
-                <option value={color}>
-                    {colors[color]} ({color})
-                </option>
-            );
-        };
-
         if(newPlayer) {
             return (
                 <fieldset>
@@ -72,9 +54,6 @@ export default React.createClass({
         } else {
             return (
                 <fieldset>
-                    <select name="playerColor" onChange={this.changeColor} value={this.state.color} ref="color">
-                        {color_keys.map(getColor)}
-                    </select>
                     <button value="addPlayer" onClick={this.addPlayer} className="pure-button button-xlarge">
                         Add Player
                     </button>

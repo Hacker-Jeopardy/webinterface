@@ -27,9 +27,9 @@ export default React.createClass({
             return { backgroundColor: player.get('color') };
         };
 
-        const renderPlayer = (player, playerIndex) => (
+        const renderPlayer = (player) => (
             <td style={getPlayerStyle(player)}>
-                { player.get('id') != currentPlayer ? '': (
+                { !player.has('id') || player.get('id') != currentPlayer ? '': (
                     <span className="player-active">
                         <i className="fa fa-circle"></i>
                     </span>
