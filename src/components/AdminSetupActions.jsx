@@ -1,21 +1,41 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+const colors = {
+    '#3CB371': 'mediumseagreen',
+    '#DAA520': 'goldenrod',
+    '#800080': 'purple',
+    '#2F4F4F': 'darkslategrey',
+    '#F08080': 'lightcoral',
+    '#32CD32': 'limegreen',
+    '#1E90FF': 'dodgerblue',
+    '#FF4500': 'orangered',
+    '#000000': 'black'
+};
+const color_keys = Object.keys(colors);
+
 export default React.createClass({
     mixins: [PureRenderMixin],
     propTypes: {
-        state: React.PropTypes.string,
+        playerCount: React.PropTypes.number,
         onAddPlayer: React.PropTypes.func,
         onUpdatePlayerName: React.PropTypes.func,
         onConfirmPlayer: React.PropTypes.func,
         onStartGame: React.PropTypes.func
     },
 
-    addPlayer: function(event) {
-        // TODO color
-        let color = '#000000';
+    getInitialState: function() {
+        return {
+            color: color_keys[this.props.playerCount % color_keys.length]
+        };
+    },
 
-        this.props.onAddPlayer(color);
+    changeColor: function(event) {
+        this.setState({color: event.target.value});
+    },
+
+    addPlayer: function(event) {
+        this.props.onAddPlayer(this.state.color);
     },
     changePlayerName: function(event) {
         const playerName = event.target.value;
@@ -32,23 +52,10 @@ export default React.createClass({
     render: function() {
         const {newPlayer} = this.props;
 
-        const colors = [
-            '#3CB371',
-            '#DAA520',
-            '#800080',
-            '#2F4F4F',
-            '#F08080',
-            '#32CD32',
-            '#1E90FF',
-            '#FF4500'
-        ];
-        const getColor = color => {
-            //let colorStyle = { color: color };
-            //<i className="fa fa-circle" style={colorStyle}></i>
-
+        const getColor = (color) => {
             return (
                 <option value={color}>
-                    {color}
+                    {colors[color]} ({color})
                 </option>
             );
         };
@@ -65,8 +72,8 @@ export default React.createClass({
         } else {
             return (
                 <fieldset>
-                    <select name="playerColor">
-                        {colors.map(getColor)}
+                    <select name="playerColor" onChange={this.changeColor} value={this.state.color} ref="color">
+                        {color_keys.map(getColor)}
                     </select>
                     <button value="addPlayer" onClick={this.addPlayer} className="pure-button button-xlarge">
                         Add Player

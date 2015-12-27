@@ -8,6 +8,7 @@ export default React.createClass({
     mixins: [PureRenderMixin],
     propTypes: {
         state: React.PropTypes.string,
+        playerCount: React.PropTypes.number,
         onRefresh: React.PropTypes.func,
         onConnectKeyboard: React.PropTypes.func,
         onConnectSerial: React.PropTypes.func,
@@ -26,7 +27,7 @@ export default React.createClass({
     },
 
     render: function() {
-        const {state, newPlayer} = this.props;
+        const {playerCount, newPlayer} = this.props;
         const {
             onConnectKeyboard, onConnectSerial,
             onAddPlayer, onUpdatePlayerName, onConfirmPlayer, onStartGame,
@@ -39,6 +40,7 @@ export default React.createClass({
                     onConnectKeyboard={onConnectKeyboard}
                     onConnectSerial={onConnectSerial} />
                 <AdminSetupActions
+                    playerCount={playerCount}
                     newPlayer={newPlayer}
                     onAddPlayer={onAddPlayer}
                     onUpdatePlayerName={onUpdatePlayerName}

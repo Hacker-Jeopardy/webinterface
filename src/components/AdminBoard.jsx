@@ -78,6 +78,7 @@ export const AdminBoardStandalone = React.createClass({
                                 <p>State: {state} </p>
                                 <AdminActions
                                     state={state}
+                                    playerCount={players.size}
                                     newPlayer={newPlayer}
                                     onRefresh={eventRefresh}
                                     onConnectKeyboard={eventConnectKeyboard}
@@ -121,6 +122,7 @@ export const AdminBoardStandalone = React.createClass({
 
                                 <AdminActions
                                     state={state}
+                                    playerCount={players.length}
                                     newPlayer={newPlayer}
                                     onRefresh={eventRefresh}
                                     onConnectKeyboard={eventConnectKeyboard}
