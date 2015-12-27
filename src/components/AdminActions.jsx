@@ -9,6 +9,7 @@ export default React.createClass({
     propTypes: {
         state: React.PropTypes.string,
         playerCount: React.PropTypes.number,
+        buzzerCount: React.PropTypes.number,
         onRefresh: React.PropTypes.func,
         onConnectKeyboard: React.PropTypes.func,
         onConnectSerial: React.PropTypes.func,
@@ -22,42 +23,86 @@ export default React.createClass({
         onAnswerExit: React.PropTypes.func
     },
 
-    refresh: function(event) {
-        this.props.onRefresh();
-    },
-
     render: function() {
-        const {playerCount, newPlayer} = this.props;
+        const {state, playerCount, buzzerCount, newPlayer} = this.props;
         const {
-            onConnectKeyboard, onConnectSerial,
+            onRefresh, onConnectKeyboard, onConnectSerial,
             onAddPlayer, onUpdatePlayerName, onConfirmPlayer, onStartGame,
             onAnswerWin, onAnswerFail, onAnswerOops, onAnswerExit
         } = this.props;
 
-        return (
-            <div id="admin_actions" className="pure-form">
-                <AdminConnectActions
-                    onConnectKeyboard={onConnectKeyboard}
-                    onConnectSerial={onConnectSerial} />
-                <AdminSetupActions
-                    playerCount={playerCount}
-                    newPlayer={newPlayer}
-                    onAddPlayer={onAddPlayer}
-                    onUpdatePlayerName={onUpdatePlayerName}
-                    onConfirmPlayer={onConfirmPlayer}
-                    onStartGame={onStartGame} />
-                <AdminAnswerActions
-                    onAnswerWin={onAnswerWin}
-                    onAnswerFail={onAnswerFail}
-                    onAnswerOops={onAnswerOops}
-                    onAnswerExit={onAnswerExit} />
+        switch(state) {
+            case 'setup':
+                return (
+                    <div id="admin_actions" className="pure-form">
+                        <AdminConnectActions
+                            onConnectKeyboard={onConnectKeyboard}
+                            onConnectSerial={onConnectSerial} />
+                        <AdminSetupActions
+                            playerCount={playerCount}
+                            newPlayer={newPlayer}
+                            onAddPlayer={onAddPlayer}
+                            onUpdatePlayerName={onUpdatePlayerName}
+                            onConfirmPlayer={onConfirmPlayer}
+                            onStartGame={onStartGame} />
 
-                <fieldset>
-                    <button value="refresh" onClick={this.refresh} className="pure-button button-xlarge">
-                        Refresh State
-                    </button>
-                </fieldset>
-            </div>
-        );
+                        <fieldset>
+                            <button value="refresh" onClick={onRefresh} className="pure-button button-xlarge">
+                                Refresh State
+                            </button>
+                        </fieldset>
+                    </div>
+                );
+
+            case 'scoreboard':
+                return (
+                    <div id="admin_actions" className="pure-form">
+                        <AdminConnectActions
+                            onConnectKeyboard={onConnectKeyboard}
+                            onConnectSerial={onConnectSerial} />
+
+                        <fieldset>
+                            <button value="refresh" onClick={onRefresh} className="pure-button button-xlarge">
+                                Refresh State
+                            </button>
+                        </fieldset>
+                    </div>
+                );
+
+            case 'answer':
+                return (
+                    <div id="admin_actions" className="pure-form">
+                        <AdminConnectActions
+                            onConnectKeyboard={onConnectKeyboard}
+                            onConnectSerial={onConnectSerial} />
+                        <AdminAnswerActions
+                            buzzerCount={buzzerCount}
+                            onAnswerWin={onAnswerWin}
+                            onAnswerFail={onAnswerFail}
+                            onAnswerOops={onAnswerOops}
+                            onAnswerExit={onAnswerExit} />
+
+                        <fieldset>
+                            <button value="refresh" onClick={onRefresh} className="pure-button button-xlarge">
+                                Refresh State
+                            </button>
+                        </fieldset>
+                    </div>
+                );
+                break;
+
+            case 'double_jeopardy':
+                // double_jeopardy
+                break;
+
+            case 'results':
+                // results
+                break;
+
+            case 'new':
+            default:
+                console.error('unknown state: ' + state);
+                break;
+        }
     }
 });
