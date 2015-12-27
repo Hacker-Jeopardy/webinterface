@@ -22,14 +22,16 @@ export default React.createClass({
             return { backgroundColor: getPlayer(player).get('color') };
         };
 
-        const renderBuzzer = (player) => (
+        const renderBuzzer = (player, i) => (
             <td style={getPlayerStyle(player)}>
                 <span className="player-name">
                     {getPlayerName(player)}
                 </span>
 
                 <span className="buzzer-time">
-                    + {player.get('time')} ms
+                    {
+                        ((i == 0) ? '' : '+ ') + (player.get('time') / 1000)  + ' s'
+                    }
                 </span>
             </td>
         );
