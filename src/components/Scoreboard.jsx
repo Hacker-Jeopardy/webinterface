@@ -20,9 +20,8 @@ export default React.createClass({
     render: function() {
         const {points, categories, players} = this.props;
         const getWinner = (points, i, cat) => {
-            let winner = cat.getIn(['winner', i]);
+            const winner = cat.getIn(['winner', i]);
 
-            // TODO be more stupid
             if (winner == null) {
                 return points;
             } else if (!winner) {
@@ -31,30 +30,20 @@ export default React.createClass({
                 return players.getIn([winner, 'name'])  || 'unknown';
             }
         };
-        const getWinnerClass = (points, i, cat) => {
-            let winner = cat.getIn(['winner', i]);
+        const getWinnerStyle = (i, cat) => {
+            const winner = cat.getIn(['winner', i]);
 
-            // TODO use player color
             if (winner == null) {
-                return '';
-            } else if (!winner) {
-                return 'nobody';
+                return {};
             } else {
-                //return players.getIn([winner, 'name'])  || 'unknown';
-                /*let w = cat.get('player');
-                if(w) {
-                    /*let index = 0;
-                    players.map((player, player_id) => {
-                        console.log(player);
-                        console.log(player_id);
-                        if(player_id == winner)
-                            return 'player' + index;
-                        else
-                            index++;
-                    });
-                }*/
+                // nobody color
+                let color = 'lightgrey';
 
-                return 'player' + winner;
+                // player color
+                if (winner)
+                    color = players.getIn([winner, 'color']);
+
+                return { backgroundColor: color };
             }
         };
 
@@ -72,7 +61,7 @@ export default React.createClass({
             {points.map((points, i) =>
                 <tr>
                     {categories.map((cat, cat_index) =>
-                        <td className={getWinnerClass(points, i, cat)} onClick={this.select} data-category={cat_index} data-answer={i}>
+                        <td style={getWinnerStyle(i, cat)} onClick={this.select} data-category={cat_index} data-answer={i}>
                             {getWinner(points, i, cat)}
                         </td>
                     )}
