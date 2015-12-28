@@ -67,13 +67,13 @@ export default React.createClass({
                     {player.get('score')}
                 </span>
 
-                {player.get('connected') ? '': (
+                { player.get('connected') ? '': (
                     <span className={this.reconnect ? 'player-connected player-reconnect' : 'player-connected'} onClick={this.reconnect}>
                         <i className="fa fa-plug" data-player={player.get('id')}></i>
                     </span>
                 )}
 
-                { !player.has('id') || !onDisconnectBuzzer ? '' : (
+                { !player.has('id') || player.get('connected') || !onDisconnectBuzzer ? '' : (
                     <span className='player-disconnect' onClick={this.disconnect}>
                         <i className="fa fa-times" data-player={player.get('id')}></i>
                     </span>
