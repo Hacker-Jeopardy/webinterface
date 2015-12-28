@@ -162,6 +162,8 @@ div.answer {
     color: black;
 }
 div.answer img {
+    min-width: 50%;
+    min-height: 50%;
     max-width: 80%;
     max-height: 80%;
 }
