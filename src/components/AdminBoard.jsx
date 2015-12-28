@@ -28,7 +28,7 @@ export const AdminBoardStandalone = React.createClass({
         const {
             eventRefresh,
             eventUpdateScore,
-            eventReconnectBuzzer,
+            eventReconnectBuzzer, eventDisconnectBuzzer,
             eventSelectRound,
             eventConnectKeyboard, eventConnectSerial,
             eventAddPlayer, eventUpdatePlayerName, eventConfirmPlayer,
@@ -103,7 +103,8 @@ export const AdminBoardStandalone = React.createClass({
                             newPlayer={newPlayer}
                             currentPlayer={currentPlayer}
                             onUpdateScore={eventUpdateScore}
-                            onReconnectBuzzer={eventReconnectBuzzer} />
+                            onReconnectBuzzer={eventReconnectBuzzer}
+                            onDisconnectBuzzer={eventDisconnectBuzzer} />
                     </div>
                 );
 
@@ -151,7 +152,8 @@ export const AdminBoardStandalone = React.createClass({
                             players={players}
                             currentPlayer={currentPlayer}
                             onUpdateScore={eventUpdateScore}
-                            onReconnectBuzzer={eventReconnectBuzzer} />
+                            onReconnectBuzzer={eventReconnectBuzzer}
+                            onDisconnectBuzzer={eventDisconnectBuzzer} />
                     </div>
                 );
                 break;

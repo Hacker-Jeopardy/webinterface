@@ -8,7 +8,8 @@ export default React.createClass({
         newPlayer: React.PropTypes.object,
         currentPlayer: React.PropTypes.string,
         onUpdateScore: React.PropTypes.func,
-        onReconnectBuzzer: React.PropTypes.func
+        onReconnectBuzzer: React.PropTypes.func,
+        onDisconnectBuzzer: React.PropTypes.func
     },
 
     updateScore: function (event) {
@@ -33,8 +34,18 @@ export default React.createClass({
         }
     },
 
+    disconnect: function(event) {
+        const {onDisconnectBuzzer} = this.props;
+
+        if(onDisconnectBuzzer) {
+            const {player} = event.target.dataset;
+            onDisconnectBuzzer(player);
+        }
+    },
+
     render: function() {
         const {players, newPlayer, currentPlayer} = this.props;
+        const {onDisconnectBuzzer} = this.props;
 
         const getPlayerStyle = player => {
             return { backgroundColor: player.get('color') };
@@ -59,6 +70,12 @@ export default React.createClass({
                 {player.get('connected') ? '': (
                     <span className={this.reconnect ? 'player-connected player-reconnect' : 'player-connected'} onClick={this.reconnect}>
                         <i className="fa fa-plug" data-player={player.get('id')}></i>
+                    </span>
+                )}
+
+                { !player.has('id') || !onDisconnectBuzzer ? '' : (
+                    <span className='player-disconnect' onClick={this.disconnect}>
+                        <i className="fa fa-times" data-player={player.get('id')}></i>
                     </span>
                 )}
             </td>

@@ -147,10 +147,10 @@ table.player-list .player-score:after, table.buzzer-list .buzzer-time:after {
     content: ']';
 }
 table.player-list .player-connected {
-    margin-left: 10px;
     color: darkred;
 }
-table.player-list .player-reconnect {
+table.player-list .player-reconnect, table.player-list .player-disconnect {
+    margin-left: 10px;
     cursor: pointer;
 }
 div.answer {

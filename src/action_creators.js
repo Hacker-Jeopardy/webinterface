@@ -61,6 +61,12 @@ export function eventReconnectBuzzer(playerId) {
         player: playerId
     });
 }
+export function eventDisconnectBuzzer(playerId) {
+    return event({
+        event: 'disconnect',
+        player: playerId
+    });
+}
 export function eventStartGame() {
     return event({
         event: 'start'
