@@ -73,7 +73,7 @@ export default React.createClass({
                     </span>
                 )}
 
-                { !player.has('id') || player.get('connected') || !onDisconnectBuzzer ? '' : (
+                { !player.has('id') || !player.get('connected') || !onDisconnectBuzzer ? '' : (
                     <span className='player-disconnect' onClick={this.disconnect}>
                         <i className="fa fa-times" data-player={player.get('id')}></i>
                     </span>
