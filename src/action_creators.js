@@ -4,6 +4,12 @@ export function setState(state) {
         state: state
     };
 }
+export function setGame(game) {
+    return {
+        type: 'SET_GAME',
+        game: game
+    };
+}
 export function setBuzzorder(buzzorder) {
     return {
         type: 'SET_BUZZORDER',

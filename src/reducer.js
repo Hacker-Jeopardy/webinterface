@@ -6,6 +6,20 @@ const INITIAL_STATE = fromJS({
     log: []
 });
 
+function setGame(state, game) {
+    console.dir(state.toJS());
+
+    // keep answer
+    if(game.state == 'answer' && game.answer && !game.answer.data) {
+        game.answer.data = state.getIn(['game', 'answer', 'data']);
+    }
+
+    state = state.set('game', fromJS(game));
+    console.dir(state.toJS());
+
+    return state;
+}
+
 function setBuzzorder(state, buzzorder) {
     let game = state.get('game').toJS();
     game.buzzorder = buzzorder;
@@ -30,6 +44,8 @@ export default function(state = INITIAL_STATE, action) {
             return state.merge(
                 fromJS(action.state)
             );
+        case 'SET_GAME':
+            return setGame(state, action.game);
         case 'SET_BUZZORDER':
             return setBuzzorder(state, action.buzzorder);
 

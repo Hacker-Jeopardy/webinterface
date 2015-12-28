@@ -5,7 +5,7 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
 import {
-    setState, mergeServer, setBuzzorder,
+    setState, setGame, mergeServer, setBuzzorder,
     onReconnect, onConnected, onDisconnected,
     eventReady, clearEvent,
     logMessage, logError, logException
@@ -76,9 +76,7 @@ store.subscribe(() => {
 
                 if (msg.state) {
                     console.log(msg);
-                    store.dispatch(setState({
-                        game: msg
-                    }));
+                    store.dispatch(setGame(msg));
                 } else if (msg.buzzorder) {
                     console.log(msg);
                     store.dispatch(setBuzzorder(msg.buzzorder));
