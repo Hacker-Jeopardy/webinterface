@@ -1,8 +1,31 @@
-# node
-node_modules/
+# Logs
+logs
+*.log
+npm-debug.log*
 
-# bower
-bower_components/
+# Runtime data
+pids
+*.pid
+*.seed
 
-# compiled app
-build/
+# Coverage
+lib-cov
+.coverage
+.nyc_output
+
+# node-waf configuration
+.lock-wscript
+
+# build directory
+build
+
+# Dependency directories
+node_modules
+jspm_packages
+bower_components
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
