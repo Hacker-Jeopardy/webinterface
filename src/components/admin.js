@@ -1,10 +1,8 @@
 import React from 'react';
 
-const Admin = (props) => {
-  return (
-    <div>Admin</div>
-  );
-};
+const Admin = (props) => (
+  <div>Admin</div>
+);
 
 Admin.displayName = 'Admin';
 Admin.propTypes = {};

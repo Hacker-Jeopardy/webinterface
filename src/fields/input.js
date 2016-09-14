@@ -1,16 +1,14 @@
 import React from 'react';
 
-const Input = ({ input, label, type, meta: { touched, error } }) => {
-  return (
+const Input = ({ input, label, type, meta: { touched, error } }) => (
+  <div>
+    <label>{label}</label>
     <div>
-      <label>{label}</label>
-      <div>
-        <input {...input} placeholder={label} type={type}/>
-        {touched && error && <span>{error}</span>}
-      </div>
+      <input { ...input } placeholder={ label } type={ type } />
+      {touched && error && <span>{error}</span>}
     </div>
-  );
-};
+  </div>
+);
 
 Input.displayName = 'Input';
 Input.propTypes = {

@@ -1,10 +1,8 @@
 import React from 'react';
 
-const Player = (props) => {
-  return (
-    <div>Player</div>
-  );
-};
+const Player = (props) => (
+  <div>Player</div>
+);
 
 Player.displayName = 'Player';
 Player.propTypes = {};

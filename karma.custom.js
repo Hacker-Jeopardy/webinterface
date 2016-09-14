@@ -1,15 +1,14 @@
-'use strict';
+const config = require('mozilla-neo/config/karma');
+const webpackConfig = require('./webpack.test');
 
-let config = require('mozilla-neo/config/karma');
+const TESTS = 'tests/**/*_test.js';
+config.files = [TESTS];
 
-const TESTS = [...config.files, 'tests/*/*_test.js'];
-config.files = TESTS;
-
-let preprocessors = {};
 const preprocessorsValues = Object.keys(config.preprocessors).map(key => config.preprocessors[key]);
-TESTS.map(test => {
-    preprocessors[test] = preprocessorsValues[0];
-});
-config.preprocessors = preprocessors;
+config.preprocessors = {
+  [TESTS]: preprocessorsValues[0],
+};
+
+config.webpack = webpackConfig;
 
 module.exports = (karma) => karma.set(config);

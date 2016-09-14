@@ -16,7 +16,7 @@ import { createDevTools, persistState } from 'redux-devtools';
 const IS_PROD = process.env.NODE_ENV !== 'development';
 const NOOP = () => null;
 
-let DevTools = IS_PROD ? NOOP : createDevTools(
+const DevTools = IS_PROD ? NOOP : createDevTools(
   <DockMonitor
     toggleVisibilityKey="ctrl-h"
     changePositionKey="ctrl-q"
@@ -47,11 +47,11 @@ export default (options) => {
 
   const frozen = Immutable.fromJS(initialState);
 
-  const routing = (state = frozen, action) => {
-    return action.type === LOCATION_CHANGE ?
+  const routing = (state = frozen, action) => (
+    action.type === LOCATION_CHANGE ?
       state.merge({ locationBeforeTransitions: action.payload }) :
-      state;
-  };
+      state
+  );
 
   const initialMiddleware = [createLogger(loggerOptions)];
 
@@ -66,25 +66,26 @@ export default (options) => {
   );
 
   const history = syncHistoryWithStore(browserHistory, store, {
-    selectLocationState: state => state.has('routing') ? state.get('routing').toJS() : null,
+    selectLocationState: state => { state.has('routing') ? state.get('routing').toJS() : null },
   });
 
   const LayoutWrapper = (props) => (
     <div id="wrapper">
-      <Layout {...props} />
+      <Layout { ...props } />
       <DevTools />
     </div>
   );
+  LayoutWrapper.displayName = 'LayoutWrapper';
 
   return {
     store,
     history,
     render(rootElement = document.getElementById('root')) {
       ReactDOM.render(
-        <Provider store={store}>
-          <Router history={history}>
-            <Route component={LayoutWrapper}>
-              {routes.map(route => <Route key={route.path} path={route.path} component={route.component}/>)}
+        <Provider store={ store }>
+          <Router history={ history }>
+            <Route component={ LayoutWrapper }>
+              {routes.map(route => <Route key={ route.path } path={ route.path } component={ route.component } />)}
             </Route>
           </Router>
         </Provider>,

@@ -3,14 +3,12 @@ import Nav from '../containers/nav';
 
 import '../style/index.scss';
 
-const Layout = ({ children }) => {
-  return (
-    <div>
-      <Nav />
-      <main id="content">{children}</main>
-    </div>
-  );
-};
+const Layout = ({ children }) => (
+  <div>
+    <Nav />
+    <main id="content">{children}</main>
+  </div>
+);
 
 Layout.displayName = 'Layout';
 Layout.propTypes = {

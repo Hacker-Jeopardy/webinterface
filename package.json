@@ -16,8 +16,10 @@
     }
   },
   "scripts": {
-    "build": "neo build",
-    "start": "neo start --port 4000",
+    "build": "neo build --config webpack.prod.js",
+    "start": "neo start --port 4000 --config webpack.dev.js",
+    "lint": "node_modules/eslint/bin/eslint.js .",
+    "lint:fix": "node_modules/eslint/bin/eslint.js . --fix",
     "test": "neo test --config karma.custom.js",
     "test:watch": "neo test --config karma.custom.js --watch"
   },

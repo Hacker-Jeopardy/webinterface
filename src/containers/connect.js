@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-//import {action} from '../actions/index';
+// import {action} from '../actions/index';
 import inputField from '../fields/input';
 
 class Connect extends Component {
@@ -15,10 +15,10 @@ class Connect extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(console.log)}>
+      <form onSubmit={ handleSubmit(console.log) }>
         <h3>Connect</h3>
 
-        <Field name="field1" label="Field 1" type="text" component={inputField}/>
+        <Field name="field1" label="Field 1" type="text" component={ inputField } />
 
         <button type="submit">Submit</button>
       </form>

@@ -1,4 +1,4 @@
-import App from './app';
+import app from './app';
 import routes from './routes';
 import reducers from './reducers/index';
 import Layout from './components/layout';
@@ -10,4 +10,4 @@ export const initialState = {
 
 const enhancers = [];
 
-App({ reducers, enhancers, initialState, Layout, routes }).render();
+app({ reducers, enhancers, initialState, Layout, routes }).render();
