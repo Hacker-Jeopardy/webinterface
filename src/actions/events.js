@@ -1,4 +1,4 @@
-import SEND_EVENT from './types';
+import { SEND_EVENT } from './types';
 
 export const EVENT_READY = 'ready';
 export const EVENT_REFRESH = 'refresh';
