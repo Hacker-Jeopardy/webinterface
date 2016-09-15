@@ -8,10 +8,10 @@ import { createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import reducers from '../src/reducers';
 
-const expect = chai.expect;
+export const expect = chai.expect;
 chai.use(chaiEnzyme());
 
-function renderComponent(Component, props = {}, state = {}) {
+export function renderComponent(Component, props = {}, state = {}) {
   return mount(
     <Provider store={createStore(combineReducers({ ...reducers }), Immutable.fromJS(state))}>
       <Component {...props} />
@@ -19,4 +19,6 @@ function renderComponent(Component, props = {}, state = {}) {
   );
 }
 
-export {renderComponent, expect};
+export const setValue = (input, value) => {
+  input.simulate('change', { target: { value } });
+};
