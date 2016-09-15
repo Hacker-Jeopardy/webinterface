@@ -67,7 +67,7 @@ export default (options) => {
   );
 
   const history = syncHistoryWithStore(browserHistory, store, {
-    selectLocationState: state => { state.has('routing') ? state.get('routing').toJS() : null },
+    selectLocationState: (state => (state.has('routing') ? state.get('routing').toJS() : null)),
   });
 
   const LayoutWrapper = (props) => (

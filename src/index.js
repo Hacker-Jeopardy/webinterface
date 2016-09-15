@@ -8,6 +8,4 @@ export const initialState = {
   config: {},
 };
 
-const enhancers = [];
-
-app({ reducers, enhancers, initialState, Layout, routes }).render();
+app({ reducers, initialState, Layout, routes }).render();
