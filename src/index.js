@@ -5,7 +5,6 @@ import Layout from './components/layout';
 
 export const initialState = {
   title: 'Jeopardy Webinterface',
-  config: {},
 };
 
 app({ reducers, initialState, Layout, routes }).render();
