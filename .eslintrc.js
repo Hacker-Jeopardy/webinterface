@@ -22,11 +22,11 @@ core.rules = {
   "jsx-a11y/label-has-for": 0,
 
   // require or disallow trailing commas
-  "comma-dangle": [ 2, "always-multiline" ],
+  "comma-dangle": [ 1, "always-multiline" ],
   // disallow assignment operators in conditional expressions
   "no-cond-assign": [2, "except-parens"],
   // disallow the use of console
-  "no-console": 2,
+  "no-console": 1,
   // disallow constant expressions in conditions
   "no-constant-condition": 2,
   // disallow control characters in regular expressions
@@ -40,39 +40,39 @@ core.rules = {
   // disallow duplicate case labels
   "no-duplicate-case": 2,
   // disallow empty block statements
-  "no-empty": [2, { "allowEmptyCatch": true }],
+  "no-empty": [1, { "allowEmptyCatch": true }],
   // disallow empty character classes in regular expressions
-  "no-empty-character-class": 2,
+  "no-empty-character-class": 1,
   // disallow reassigning exceptions in catch clauses
-  "no-ex-assign": 2,
+  "no-ex-assign": 1,
   // disallow unnecessary boolean casts
-  "no-extra-boolean-cast": 2,
+  "no-extra-boolean-cast": 1,
   // disallow unnecessary parentheses
-  "no-extra-parens": [2, "functions"],
+  "no-extra-parens": [1, "functions"],
   // disallow unnecessary semicolons
   "no-extra-semi": 0,
   // disallow reassigning function declarations
-  "no-func-assign": 2,
+  "no-func-assign": 1,
   // disallow function or var declarations in nested blocks
   "no-inner-declarations": [2, "both"],
   // disallow invalid regular expression strings in RegExp constructors
   "no-invalid-regexp": 2,
   // disallow irregular whitespace outside of strings and comments
-  "no-irregular-whitespace": 2,
+  "no-irregular-whitespace": 1,
   // disallow negating the left operand in in expressions
   "no-negated-in-lhs": 2,
   // disallow calling global object properties as functions
   "no-obj-calls": 2,
   // disallow multiple spaces in regular expression literals
-  "no-regex-spaces": 2,
+  "no-regex-spaces": 1,
   // disallow sparse arrays
-  "no-sparse-arrays": 2,
+  "no-sparse-arrays": 1,
   // disallow confusing multiline expressions
-  "no-unexpected-multiline": 2,
+  "no-unexpected-multiline": 1,
   // disallow unreachable code after return, throw, continue, and break statements
-  "no-unreachable": 2,
+  "no-unreachable": 1,
   //require calls to isNaN() when checking for NaN
-  "use-isnan": 2,
+  "use-isnan": 1,
   // enforce valid JSDoc comments
   "valid-jsdoc": 0,
   // enforce comparing typeof expressions against valid strings
@@ -82,7 +82,7 @@ core.rules = {
   // http://eslint.org/docs/rules/#best-practices
 
   // enforce getter and setter pairs in objects
-  "accessor-pairs": 2,
+  "accessor-pairs": 1,
   // enforce return statements in callbacks of array methods
   "array-callback-return": 0,
   // enforce the use of variables within the scope they are defined
@@ -96,7 +96,7 @@ core.rules = {
   // require default cases in switch statements
   "default-case": 0,
   // enforce consistent newlines before and after dots
-  "dot-location": [2, "property"],
+  "dot-location": [1, "property"],
   // enforce dot notation whenever possible
   "dot-notation": 0,
   // require the use of === and !==
@@ -104,7 +104,7 @@ core.rules = {
   // require for-in loops to include an if statement
   "guard-for-in": 2,
   // disallow the use of alert, confirm, and prompt
-  "no-alert": 2,
+  "no-alert": 1,
   // disallow the use of arguments.caller or arguments.callee
   "no-caller": 2,
   // disallow lexical declarations in case clauses
@@ -124,9 +124,9 @@ core.rules = {
   // disallow extending native types
   "no-extend-native": 2,
   // disallow unnecessary calls to .bind()
-  "no-extra-bind": 2,
+  "no-extra-bind": 1,
   // disallow unnecessary labels
-  "no-extra-label": 2,
+  "no-extra-label": 1,
   // disallow fallthrough of case statements
   "no-fallthrough": [2, { "commentPattern": "break" }],
   // disallow leading or trailing decimal points in numeric literals
@@ -162,7 +162,7 @@ core.rules = {
   // disallow new operators with the String, Number, and Boolean objects
   "no-new-wrappers": 2,
   // disallow octal literals
-  "no-octal": 2,
+  "no-octal": 1,
   // disallow octal escape sequences in string literals
   "no-octal-escape": 2,
   // disallow reassigning function parameters
@@ -176,9 +176,9 @@ core.rules = {
   // disallow javascript: urls
   "no-script-url": 2,
   // disallow assignments where both sides are exactly the same
-  "no-self-assign": 2,
+  "no-self-assign": 1,
   // disallow comparisons where both sides are exactly the same
-  "no-self-compare": 2,
+  "no-self-compare": 1,
   // disallow comma operators
   "no-sequences": 2,
   // disallow throwing literals as exceptions
@@ -188,13 +188,13 @@ core.rules = {
   // disallow unused expressions
   "no-unused-expressions": 0,
   // disallow unused labels
-  "no-unused-labels": 2,
+  "no-unused-labels": 1,
   // disallow unnecessary calls to .call() and .apply()
-  "no-useless-call": 2,
+  "no-useless-call": 1,
   // disallow unnecessary concatenation of literals or template literals
-  "no-useless-concat": 2,
+  "no-useless-concat": 1,
   // disallow unnecessary escape characters
-  "no-useless-escape": 2,
+  "no-useless-escape": 1,
   // disallow void operators
   "no-void": 2,
   // disallow specified warning terms in comments
@@ -272,23 +272,23 @@ core.rules = {
   // http://eslint.org/docs/rules/#stylistic-issues
 
   // enforce consistent spacing inside array brackets
-  "array-bracket-spacing": [2, "never"],
+  "array-bracket-spacing": [1, "never"],
   // enforce consistent spacing inside single-line blocks
-  "block-spacing": [2, "always"],
+  "block-spacing": [1, "always"],
   // enforce consistent brace style for blocks
-  "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+  "brace-style": [1, "1tbs", { "allowSingleLine": true }],
   // enforce camelcase naming convention
   "camelcase": 0,
   // enforce consistent spacing before and after commas
-  "comma-spacing": [2, { "before": false, "after": true }],
+  "comma-spacing": [1, { "before": false, "after": true }],
   // enforce consistent comma style
-  "comma-style": [2, "last"],
+  "comma-style": [1, "last"],
   // enforce consistent spacing inside computed property brackets
-  "computed-property-spacing": [2, "never"],
+  "computed-property-spacing": [1, "never"],
   // enforce consistent naming when capturing the current execution context
   "consistent-this": 0,
   // enforce at least one newline at the end of files
-  "eol-last": [2, "unix"],
+  "eol-last": [1, "unix"],
   // enforce named function expressions
   "func-names": 0,
   // enforce the consistent use of either function declarations or expressions
@@ -300,18 +300,18 @@ core.rules = {
   // require identifiers to match a specified regular expression
   "id-match": 0,
   // enforce consistent indentation
-  "indent": [2, 2, { "SwitchCase": 1 }],
+  "indent": [1, 2, { "SwitchCase": 1 }],
   // enforce the consistent use of either double or single quotes in JSX attributes
-  "jsx-quotes": [2, "prefer-double"],
+  "jsx-quotes": [1, "prefer-double"],
   // enforce consistent spacing between keys and values in object literal properties
   "key-spacing": [0, {
     "align": { "beforeColon": false, "afterColon": true, "on": "colon" },
     "multiLine": { "beforeColon": false, "afterColon": true }
   }],
   // enforce consistent spacing before and after keywords
-  "keyword-spacing": [2, { "before": true, "after": true }],
+  "keyword-spacing": [1, { "before": true, "after": true }],
   // enforce consistent linebreak style
-  "linebreak-style": [2, "unix"],
+  "linebreak-style": [1, "unix"],
   // require empty lines around comments
   "lines-around-comment": 0,
   // enforce a maximum depth that blocks can be nested
@@ -345,11 +345,11 @@ core.rules = {
   // disallow inline comments after code
   "no-inline-comments": 0,
   // disallow if statements as the only statement in else blocks
-  "no-lonely-if": 2,
+  "no-lonely-if": 1,
   // disallow mixed spaces and tabs for indentation
-  "no-mixed-spaces-and-tabs": 2,
+  "no-mixed-spaces-and-tabs": 1,
   // disallow multiple empty lines
-  "no-multiple-empty-lines": [2, { "max": 2, "maxEOF": 0, "maxBOF": 0 }],
+  "no-multiple-empty-lines": [1, { "max": 2, "maxEOF": 0, "maxBOF": 0 }],
   // disallow negated conditions
   "no-negated-condition": 0,
   // disallow nested ternary expressions
@@ -361,19 +361,19 @@ core.rules = {
   // disallow specified syntax
   "no-restricted-syntax": 0,
   // disallow spacing between function identifiers and their applications
-  "no-spaced-func": 2,
+  "no-spaced-func": 1,
   // disallow ternary operators
   "no-ternary": 0,
   // disallow trailing whitespace at the end of lines
-  "no-trailing-spaces": 2,
+  "no-trailing-spaces": 1,
   // disallow dangling underscores in identifiers
   "no-underscore-dangle": 0,
   // disallow ternary operators when simpler alternatives exist
   "no-unneeded-ternary": 2,
   // disallow whitespace before properties
-  "no-whitespace-before-property": 2,
+  "no-whitespace-before-property": 1,
   // enforce consistent spacing inside braces
-  "object-curly-spacing": [2, "always"],
+  "object-curly-spacing": [1, "always"],
   // enforce variables to be declared either together or separately in functions
   "one-var": 0,
   // require or disallow newlines around var declarations
@@ -381,19 +381,19 @@ core.rules = {
   // require or disallow assignment operator shorthand where possible
   "operator-assignment": 0,
   // enforce consistent linebreak style for operators
-  "operator-linebreak": [2, "after"],
+  "operator-linebreak": [1, "after"],
   // require or disallow padding within blocks
   "padded-blocks": 0,
   // require quotes around object literal property names
-  "quote-props": [2, "consistent-as-needed"],
+  "quote-props": [1, "consistent-as-needed"],
   // enforce the consistent use of either backticks, double, or single quotes
-  "quotes": [2, "single", { "allowTemplateLiterals": true }],
+  "quotes": [1, "single", { "allowTemplateLiterals": true }],
   // require JSDoc comments
   "require-jsdoc": 0,
   // require or disallow semicolons instead of ASI
   "semi": [0, "always"],
   // enforce consistent spacing before and after semicolons
-  "semi-spacing": 2,
+  "semi-spacing": 1,
   // enforce sorted import declarations within module
   "sort-imports": 0,
   // require variables within the same declaration block to be sorted
@@ -401,15 +401,15 @@ core.rules = {
   // enforce consistent spacing before blocks
   "space-before-blocks": 0,
   // enforce consistent spacing before function definition opening parenthesis
-  "space-before-function-paren": [2, { "anonymous": "always", "named": "never" }],
+  "space-before-function-paren": [1, { "anonymous": "always", "named": "never" }],
   // enforce consistent spacing inside parentheses
-  "space-in-parens": [2, "never"],
+  "space-in-parens": [1, "never"],
   // require spacing around operators
-  "space-infix-ops": [2, { "int32Hint": true }],
+  "space-infix-ops": [1, { "int32Hint": true }],
   // enforce consistent spacing before or after unary operators
-  "space-unary-ops": [2, { "words": true, "nonwords": false }],
+  "space-unary-ops": [1, { "words": true, "nonwords": false }],
   // enforce consistent spacing after the // or /* in a comment
-  "spaced-comment": [2, "always"],
+  "spaced-comment": [1, "always"],
   // require parenthesis around regex literals
   "wrap-regex": 0,
 
@@ -421,11 +421,11 @@ core.rules = {
   // require parentheses around arrow function arguments
   "arrow-parens": 0,
   // enforce consistent spacing before and after the arrow in arrow functions
-  "arrow-spacing": [2, { "before": true, "after": true }],
+  "arrow-spacing": [1, { "before": true, "after": true }],
   // require super() calls in constructors
   "constructor-super": 2,
   // enforce consistent spacing around * operators in generator functions
-  // "generator-star-spacing": [2, { before: false, after: true }],
+  // "generator-star-spacing": [1, { before: false, after: true }],
   // disallow reassigning class members
   "no-class-assign": 2,
   // disallow arrow functions where they could be confused with comparisons
@@ -443,7 +443,7 @@ core.rules = {
   // disallow this/super before calling super() in constructors
   "no-this-before-super": 2,
   // disallow unnecessary constructors
-  "no-useless-constructor": 2,
+  "no-useless-constructor": 1,
   // require let or const instead of var
   "no-var": 2,
   // require or disallow method and property shorthand syntax for object literals
@@ -451,7 +451,7 @@ core.rules = {
   // require arrow functions as callbacks
   "prefer-arrow-callback": [2, { "allowNamedFunctions": true }],
   // require const declarations for variables that are never reassigned after declared
-  "prefer-const": [2, { "destructuring": "all" }],
+  "prefer-const": [1, { "destructuring": "all" }],
   // require Reflect methods where applicable
   "prefer-reflect": 0,
   // require rest parameters instead of arguments
@@ -459,19 +459,19 @@ core.rules = {
   // require spread operators instead of .apply()
   "prefer-spread": 2,
   // require template literals instead of string concatenation
-  "prefer-template": 2,
+  "prefer-template": 1,
   // require generator functions to contain yield
   "require-yield": 0,
   // require or disallow spacing around embedded expressions of template strings
-  "template-curly-spacing": [2, "always"],
+  "template-curly-spacing": [1, "always"],
   // require or disallow spacing around the * in yield* expressions
-  "yield-star-spacing": [2, { "before": false, "after": true }],
+  "yield-star-spacing": [1, { "before": false, "after": true }],
 
   // ESLint-plugin-React
   // https://github.com/yannickcr/eslint-plugin-react#list-of-supported-rules
 
   // prevent missing displayName in a React component definition
-  "react/display-name": [2, { "ignoreTranspilerName": true }],
+  "react/display-name": [1, { "ignoreTranspilerName": true }],
   // forbid certain propTypes
   "react/forbid-prop-types": 0,
   // prevent usage of dangerous JSX properties
@@ -499,7 +499,7 @@ core.rules = {
   // enforce stateless React Components to be written as a pure function
   "react/prefer-stateless-function": 0,
   // prevent missing props validation in a React component definition
-  "react/prop-types": 2,
+  "react/prop-types": 1,
   // prevent missing React when using JSX
   "react/react-in-jsx-scope": 2,
   // restrict file extensions that may be required
@@ -507,7 +507,7 @@ core.rules = {
   // enforce ES5 or ES6 class for returning value in render function
   "react/require-render-return": 2,
   // prevent extra closing tags for components without children
-  "react/self-closing-comp": 2,
+  "react/self-closing-comp": 1,
   // enforce component methods order
   "react/sort-comp": 2,
   // enforce propTypes declarations alphabetical sorting
@@ -521,21 +521,21 @@ core.rules = {
   // prevent comments from being inserted as text nodes
   "react/jsx-no-comment-textnodes": 0,
   // enforce boolean attributes notation in JSX
-  "react/jsx-boolean-value": [2, "never"],
+  "react/jsx-boolean-value": [1, "never"],
   // validate closing bracket location in JSX
-  "react/jsx-closing-bracket-location": 2,
+  "react/jsx-closing-bracket-location": 1,
   // enforce or disallow spaces inside of curly braces in JSX attributes
-  "react/jsx-curly-spacing": [2, "always"],
+  "react/jsx-curly-spacing": [1, "always"],
   // enforce or disallow spaces around equal signs in JSX attributes
-  "react/jsx-equals-spacing": [2, "never"],
+  "react/jsx-equals-spacing": [1, "never"],
   // enforce position of the first prop in JSX
-  "react/jsx-first-prop-new-line": [2, "multiline"],
+  "react/jsx-first-prop-new-line": [1, "multiline"],
   // enforce event handler naming conventions in JSX
   "react/jsx-handler-names": 0,
   // validate props indentation in JSX
-  "react/jsx-indent-props": [2, 2],
+  "react/jsx-indent-props": [1, 2],
   // validate JSX indentation
-  "react/jsx-indent": [2, 2],
+  "react/jsx-indent": [1, 2],
   // validate JSX has key prop when in array or iterator
   "react/jsx-key": 2,
   // limit maximum of props on a single line in JSX
@@ -553,7 +553,7 @@ core.rules = {
   // enforce props alphabetical sorting
   "react/jsx-sort-props": 0,
   // validate spacing before closing bracket in JSX
-  "react/jsx-space-before-closing": 2,
+  "react/jsx-space-before-closing": 1,
   // prevent React to be incorrectly marked as unused
   "react/jsx-uses-react": 2,
   // prevent variables used in JSX to be incorrectly marked as unused

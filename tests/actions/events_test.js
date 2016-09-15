@@ -1,7 +1,7 @@
 import { expect } from '../test_helper';
 import events from '../../src/actions/events';
 
-describe('events', () => {
+describe('actions/events', () => {
     beforeEach(() => {
         // TODO
     });

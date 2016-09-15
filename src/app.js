@@ -47,7 +47,8 @@ export default (options) => {
 
   const frozen = Immutable.fromJS(initialState);
 
-  const routing = (state = frozen, action) => (
+  const routerReducerInitialState = Immutable.fromJS({ locationBeforeTransitions: null });
+  const routing = (state = routerReducerInitialState, action) => (
     action.type === LOCATION_CHANGE ?
       state.merge({ locationBeforeTransitions: action.payload }) :
       state
