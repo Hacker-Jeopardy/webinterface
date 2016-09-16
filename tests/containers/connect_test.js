@@ -1,5 +1,6 @@
 import { renderComponent, setValue, expect } from '../test_helper';
 import Connect from '../../src/containers/connect';
+import { CONNECT } from '../../src/actions/types';
 
 describe('<Connect />', () => {
   let component;
@@ -8,7 +9,7 @@ describe('<Connect />', () => {
   const config = { server };
 
   beforeEach(() => {
-    component = renderComponent(Connect);
+    component = renderComponent(Connect, {}, { config: { server: {} } });
   });
 
   it(`has a form`, () => {
@@ -33,6 +34,7 @@ describe('<Connect />', () => {
 
       it(`has the value set in config`, () => {
         component = renderComponent(Connect, {}, { config });
+        input = component.find(`input[name="${key}"]`);
         expect(input.prop('value')).to.equal(server[key]);
       });
 
@@ -44,31 +46,33 @@ describe('<Connect />', () => {
   });
 
   describe('submit', () => {
-    let submit;
-    let submitted = false, data = null;
-    const connect = (host, port, ssl) => {
-      submitted = true;
-      data = { host, port, ssl };
+    let form;
+    let submitted, data;
+    const logger = (action, getState) => {
+      if(action.type == CONNECT) {
+        submitted = true;
+        data = action.payload;
+      }
     };
 
     beforeEach(() => {
-      component = renderComponent(Connect, { connect }, { config });
-      submit = component.find('button[type="submit"]');
+      component = renderComponent(Connect, { }, { config }, logger);
+      form = component.find('form');
       submitted = false;
       data = null;
     });
 
     it('has a submit button', () => {
-      expect(submit).to.exist;
+      expect(component.find('button[type="submit"]')).to.exist;
     });
 
-    it('fires connect on form submit', () => {
-      submit.simulate('click');
+    it('fires CONNECT on form submit', () => {
+      form.simulate('submit');
       expect(submitted).to.equal(true);
     });
 
-    it('fires connect with correct values', () => {
-      submit.simulate('click');
+    it('fires CONNECT with correct values', () => {
+      form.simulate('submit');
       expect(data).to.eql(server);
     });
 
@@ -76,7 +80,7 @@ describe('<Connect />', () => {
       ['host', 'port'].map(key => {
         it(`doesn't submit when ${key} is empty`, () => {
           setValue(component.find(`input[name="${key}"]`), '');
-          submit.simulate('click');
+          form.simulate('submit');
           expect(submitted).to.equals(false);
         });
       });

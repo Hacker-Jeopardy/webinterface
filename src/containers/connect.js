@@ -1,8 +1,9 @@
+import Immutable from 'immutable';
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import {action} from '../actions/index';
+import { connectToServer } from '../actions/index';
 import inputField from '../fields/input';
 
 class Connect extends Component {
@@ -17,7 +18,7 @@ class Connect extends Component {
   static defaultProps = {};
 
   onSubmit(data) {
-    this.props.connect(...data);
+    this.props.connect(data.host, data.port, data.ssl);
   }
 
   render() {
@@ -30,7 +31,7 @@ class Connect extends Component {
         <Field name="port" label="Port" type="number" min="0" max="65535" component={ inputField } />
         <Field name="ssl" label="SSL" type="checkbox" component={ inputField } />
 
-        <button type="submit" disabled={ pristine || submitting }>Submit</button>
+        <button type="submit" disabled={ submitting }>Submit</button>
         <button type="button" disabled={ pristine || submitting } onClick={ reset }>Reset</button>
       </form>
     );
@@ -39,26 +40,28 @@ class Connect extends Component {
 
 const validate = values => {
   const errors = {};
+  values = Immutable.fromJS(values);
 
-  /*if (!values.get('host')) {
-   errors.host = 'Required';
-   }
+  if (!values.get('host')) {
+    errors.host = 'Required';
+  }
 
-   const port = values.get('port');
-   if (!Number.isInteger(port) || port < 0 || port > 65535) {
-   errors.port = 'No Valid Port';
-   }*/
+  const port = values.get('port');
+  if (!Number.isInteger(port) || port < 0 || port > 65535) {
+    errors.port = 'No Valid Port';
+  }
 
   return errors;
 };
 
 const ConnectForm = reduxForm({
   form: 'Connect',
+  getFormState: (state) => state.get('form').toJS(),
   validate,
 })(Connect);
 
 export default connect(state => ({
-  initialValues: state.getIn(['config', 'server']),
+  initialValues: state.getIn(['config', 'server']).toJS(),
 }), dispatch => bindActionCreators({
-  // action: action
+  connect: connectToServer,
 }, dispatch))(ConnectForm);

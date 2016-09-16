@@ -5,7 +5,7 @@ describe('routes', () => {
   it('has one root route', () => {
     let rootRoute = [];
     routes.map(route => {
-      if(route.path === '/')
+      if (route.path === '/')
         rootRoute.push(route);
     });
 

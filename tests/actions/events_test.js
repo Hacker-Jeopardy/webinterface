@@ -64,7 +64,7 @@ describe('actions', () => {
     const buzzerType = events.BUZZER_TYPE_KEYBOARD;
     const devicePath = 'devicePath';
     const playerId = 1234;
-    testEvent('connectBuzzer', events.EVENT_CONNECT_BUZZER, { type: buzzerType, device: devicePath});
+    testEvent('connectBuzzer', events.EVENT_CONNECT_BUZZER, { type: buzzerType, device: devicePath });
     testEvent('reconnectBuzzer', events.EVENT_RECONNECT_BUZZER, { player: playerId });
     testEvent('disconnectBuzzer', events.EVENT_DISCONNECT_BUZZER, { player: playerId });
 

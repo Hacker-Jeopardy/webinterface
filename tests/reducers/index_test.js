@@ -2,12 +2,12 @@ import { expect } from '../test_helper';
 import Index from '../../src/reducers/index';
 
 describe('reducers', () => {
-    beforeEach(() => {
-        // TODO
-    });
+  beforeEach(() => {
+    // TODO
+  });
 
-    it('does something', () => {
-        expect('something').to.equals('something');
-    });
+  it('does something', () => {
+    expect('something').to.equals('something');
+  });
 
 });

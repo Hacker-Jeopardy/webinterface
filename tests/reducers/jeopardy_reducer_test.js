@@ -2,12 +2,12 @@ import { expect } from '../test_helper';
 import JeopardyReducer from '../../src/reducers/jeopardy_reducer';
 
 describe('jeopardyReducer', () => {
-    beforeEach(() => {
-        // TODO
-    });
+  beforeEach(() => {
+    // TODO
+  });
 
-    it('does something', () => {
-        expect('something').to.equals('something');
-    });
+  it('does something', () => {
+    expect('something').to.equals('something');
+  });
 
 });
