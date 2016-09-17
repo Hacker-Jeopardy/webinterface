@@ -25,6 +25,7 @@
   },
   "keywords": [],
   "devDependencies": {
+    "karma-firefox-launcher": "^1.0.0",
     "mozilla-neo": "^2.4.0"
   },
   "dependencies": {

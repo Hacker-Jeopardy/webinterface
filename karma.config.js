@@ -1,5 +1,7 @@
 const config = require('mozilla-neo/config/karma');
 
+config.browsers.push('Firefox');
+
 const TESTS = 'tests/**/*_test.js';
 config.files = [TESTS];
 
