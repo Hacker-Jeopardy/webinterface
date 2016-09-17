@@ -20,12 +20,12 @@
     "start": "neo start --port 4000 --config webpack.dev.js",
     "lint": "node_modules/eslint/bin/eslint.js .",
     "lint:fix": "node_modules/eslint/bin/eslint.js . --fix",
-    "test": "neo test --config karma.custom.js",
-    "test:watch": "neo test --config karma.custom.js --watch"
+    "test": "npm run lint && neo test --config karma.test.js",
+    "test:watch": "neo test --config karma.test-watch.js --watch"
   },
   "keywords": [],
   "devDependencies": {
-    "mozilla-neo": "2.3.1"
+    "mozilla-neo": "^2.4.0"
   },
   "dependencies": {
     "bootstrap": "4.0.0-alpha.2",
